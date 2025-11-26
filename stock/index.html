@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MarketLens — Discover High-Probability U.S. Stock Opportunities</title>
+  <meta name="description" content="MarketLens: Get ahead of the market with our exclusive insights, AI-powered analysis, and high-conviction opportunities. Join thousands of successful U.S. investors." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #071229;
+      --card: #0e1824;
+      --accent: #0fb5c9;
+      --accent-dark: #0b9aa8;
+      --accent-light: #1ad8f0;
+      --muted: #9fb2bf;
+      --muted-light: #c8d4dc;
+      --glass: rgba(255,255,255,0.03);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --highlight: #ffd700;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(180deg, #041022 0%, #071827 70%);
+      color: #e6eef3;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #05262b;
+      font-size: 20px;
+    }
+    
+    h1 {
+      font-size: 26px;
+      margin: 0;
+      background: linear-gradient(90deg, #fff, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    p.lead {
+      color: var(--muted);
+      margin: 6px 0 0;
+      font-size: 14px;
+    }
+    
+    nav .btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 18px;
+      border-radius: 10px;
+      color: #dff6fb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    nav .btn:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--accent);
+    }
+    
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 40px 0;
+      align-items: center;
+    }
+    
+    .hero-content {
+      padding-right: 20px;
+    }
+    
+    .hero-image {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      height: 400px;
+      background: linear-gradient(135deg, #0b1a2f, #0e1824);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%230fb5c9" stop-opacity="0.2"/><stop offset="100%" stop-color="%23089ab8" stop-opacity="0.1"/></linearGradient></defs><path d="M0,0 L400,0 L400,400 L0,400 Z" fill="url(%23grad)"/><g fill="%230fb5c9" opacity="0.1"><circle cx="100" cy="100" r="40"/><circle cx="300" cy="150" r="60"/><circle cx="200" cy="300" r="50"/></g><g stroke="%230fb5c9" stroke-width="2" opacity="0.2" fill="none"><path d="M50,200 Q150,100 250,200 T450,200"/><path d="M50,250 Q150,150 250,250 T450,250"/></g></svg>');
+      background-size: cover;
+      opacity: 0.7;
+    }
+    
+    .hero-image-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+    
+    .hero-image-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .hero-image-subtitle {
+      font-size: 16px;
+      color: var(--muted-light);
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 40px rgba(2,6,23,0.65);
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    
+    .hero h2 {
+      font-size: 38px;
+      margin: 0 0 16px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 20px;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    
+    .highlight {
+      background: linear-gradient(90deg, var(--accent), var(--highlight));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(15, 181, 201, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(15, 181, 201, 0.1);
+    }
+    
+    .social-proof-stats {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+    }
+    
+    .pill {
+      background: var(--glass);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    
+    .primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      border: none;
+      padding: 16px 28px;
+      border-radius: 12px;
+      color: #02121a;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(15, 181, 201, 0.3);
+      font-size: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: all 0.6s;
+    }
+    
+    .primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(15, 181, 201, 0.5);
+    }
+    
+    .primary:hover::before {
+      left: 100%;
+    }
+    
+    .ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 15px 26px;
+      border-radius: 12px;
+      color: #dff6fb;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .ghost:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    
+    .urgency-banner {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #05262b;
+      font-weight: 700;
+      font-size: 15px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(15, 181, 201, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(15, 181, 201, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(15, 181, 201, 0); }
+    }
+    
+    /* Market Index Section */
+    .market-indices {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 40px 0;
+    }
+    
+    .index-card {
+      background: linear-gradient(135deg, rgba(15, 181, 201, 0.05), rgba(8, 154, 184, 0.05));
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .index-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .index-name {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    
+    .index-value {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .index-change {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .positive {
+      color: var(--success);
+    }
+    
+    .negative {
+      color: var(--danger);
+    }
+    
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .section {
+      margin-top: 60px;
+    }
+    
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-align: center;
+    }
+    
+    .section-subtitle {
+      color: var(--muted);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 18px;
+    }
+    
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .quote {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding: 20px;
+      border-radius: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .quote-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .quote-author {
+      font-weight: 600;
+      color: var(--muted-light);
+    }
+    
+    .quote-location {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .quote-text {
+      font-style: italic;
+      line-height: 1.5;
+    }
+    
+    footer {
+      margin-top: 80px;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-logo {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    
+    .footer-disclaimer {
+      font-size: 12px;
+      max-width: 500px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-link {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: var(--accent);
+    }
+    
+    /* Modal Styles */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      backdrop-filter: blur(5px);
+    }
+    
+    .modal {
+      background: #071827;
+      border-radius: 16px;
+      padding: 30px;
+      width: 90%;
+      max-width: 480px;
+      color: #dff6fb;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-close:hover {
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+    
+    .modal-title {
+      font-size: 24px;
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    
+    .modal-subtitle {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    
+    .field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+    
+    .field label {
+      margin-bottom: 6px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .field input, .field select {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: #e6eef3;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+    }
+    
+    .field input:focus, .field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(15, 181, 201, 0.2);
+    }
+    
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.02);
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .pricing {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .plan {
+      background: linear-gradient(180deg, rgba(255,255,255,0.017), transparent);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .plan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .plan-title {
+      font-weight: 700;
+      font-size: 18px;
+    }
+    
+    .plan-price {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .plan-features {
+      margin: 12px 0;
+    }
+    
+    .plan-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    
+    .feature-check {
+      color: var(--success);
+    }
+    
+    .progress-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    
+    .progress-indicator::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      z-index: 1;
+    }
+    
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    
+    .step-active .step-number {
+      background: var(--accent);
+      color: #05262b;
+    }
+    
+    .step-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .step-active .step-label {
+      color: var(--accent);
+    }
+    
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    
+    .success-stories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .success-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .success-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(15, 181, 201, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+    
+    .success-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .success-description {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    .community-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .community-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .community-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .community-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .community-author {
+      font-weight: 600;
+    }
+    
+    .community-role {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .community-content {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .community-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .no-new-account {
+      background: linear-gradient(90deg, rgba(15, 181, 201, 0.1), transparent);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 30px 0;
+      border: 1px solid rgba(15, 181, 201, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .no-account-icon {
+      font-size: 24px;
+      color: var(--accent);
+    }
+    
+    .no-account-content h4 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    
+    .no-account-content p {
+      margin: 0;
+      color: var(--muted);
+    }
+    
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 40px 0;
+    }
+    
+    .grid-image {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(15, 181, 201, 0.1), rgba(8, 154, 184, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      position: relative;
+    }
+    
+    .grid-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.3);
+    }
+    
+    .grid-image-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      
+      .columns {
+        grid-template-columns: 1fr;
+      }
+      
+      .market-indices {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .wrap {
+        padding: 0 16px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      
+      nav {
+        width: 100%;
+      }
+      
+      nav .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .hero h2 {
+        font-size: 30px;
+      }
+      
+      .hero-image {
+        height: 300px;
+      }
+      
+      .cta-row {
+        flex-direction: column;
+      }
+      
+      .social-proof {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      
+      .social-proof-stats {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .market-indices {
+        grid-template-columns: 1fr;
+      }
+      
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">ML</div>
+        <div>
+          <h1>MarketLens</h1>
+          <p class="lead">Discover High-Probability Opportunities · AI-Powered Insights · Expert Analysis</p>
+        </div>
+      </div>
+      <nav>
+        <button class="btn" onclick="openModal('subscribe','Header Subscribe')">Get Exclusive Access</button>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Discover <span class="highlight">High-Probability</span> U.S. Stock Opportunities Before They Take Off</h2>
+        <p class="hero-subtitle">Join thousands of successful investors who use our <span class="highlight">exclusive insights</span> to identify potential market-moving opportunities. Our AI-powered analysis helps you spot trends before they become mainstream.</p>
+        
+        <div class="social-proof">
+          <div class="social-proof-stats">
+            <div class="stat">
+              <div class="stat-value">5,000+</div>
+              <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">92%</div>
+              <div class="stat-label">Satisfaction</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">15+</div>
+              <div class="stat-label">Market Experts</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features">
+          <span class="pill">Daily High-Conviction Alerts</span>
+          <span class="pill">AI-Powered Opportunity Detection</span>
+          <span class="pill">Expert Portfolio Analysis</span>
+          <span class="pill">Early Trend Identification</span>
+          <span class="pill">VIP Market Insights</span>
+        </div>
+
+        <div class="cta-row">
+          <button class="primary" onclick="openModal('subscribe','Hero - Daily Brief')">Get Free Access Now →</button>
+          <button class="ghost" onclick="openModal('diagnose','Get Account Diagnostic')">See Potential Opportunities</button>
+        </div>
+
+        <div class="urgency-banner">
+          <span>⚡</span>
+          <span>Limited spots available - Join before our next high-conviction alert!</span>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <div class="hero-image-content">
+          <div class="hero-image-title">Spot Opportunities Before The Crowd</div>
+          <div class="hero-image-subtitle">Our AI identifies patterns that could signal potential market movements</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- MARKET INDICES -->
+    <section class="market-indices">
+      <div class="index-card">
+        <div class="index-name">S&P 500</div>
+        <div class="index-value">4,567.25</div>
+        <div class="index-change positive">+1.25%</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">NASDAQ</div>
+        <div class="index-value">14,234.87</div>
+        <div class="index-change positive">+0.89%</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">DOW JONES</div>
+        <div class="index-value">35,678.42</div>
+        <div class="index-change negative">-0.34%</div>
+      </div>
+      <div class="index-card">
+        <div class="index-name">RUSSELL 2000</div>
+        <div class="index-value">1,845.63</div>
+        <div class="index-change positive">+0.56%</div>
+      </div>
+    </section>
+    
+    <!-- IMAGE GRID -->
+    <div class="image-grid">
+      <div class="grid-image">
+        <div class="grid-image-content">
+          <div style="font-size: 32px; margin-bottom: 10px;">📊</div>
+          <div>Advanced Opportunity Detection</div>
+        </div>
+      </div>
+      <div class="grid-image">
+        <div class="grid-image-content">
+          <div style="font-size: 32px; margin-bottom: 10px;">🤝</div>
+          <div>Expert Community Insights</div>
+        </div>
+      </div>
+      <div class="grid-image">
+        <div class="grid-image-content">
+          <div style="font-size: 32px; margin-bottom: 10px;">📈</div>
+          <div>Real-time Market Intelligence</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- NO NEW ACCOUNT REQUIRED -->
+    <section class="no-new-account">
+      <div class="no-account-icon">💼</div>
+      <div class="no-account-content">
+        <h4>Use Your Existing Brokerage Account</h4>
+        <p>MarketLens works with any U.S. brokerage account. No need to transfer funds or open new accounts. We analyze your existing portfolio and provide insights to help identify potential opportunities.</p>
+      </div>
+    </section>
+
+    <!-- SUCCESS STORIES -->
+    <section class="section">
+      <h3 class="section-title">Real Results from U.S. Investors</h3>
+      <p class="section-subtitle">See how MarketLens members have used our insights to potentially improve their investment outcomes</p>
+      
+      <div class="success-stories">
+        <div class="success-card">
+          <div class="success-icon">📊</div>
+          <div class="success-title">Identified High-Conviction Opportunities</div>
+          <div class="success-description">Members report our analysis helped them spot potential opportunities before they became widely known</div>
+        </div>
+        
+        <div class="success-card">
+          <div class="success-icon">⏱️</div>
+          <div class="success-title">Saved 10+ Hours Weekly</div>
+          <div class="success-description">Using AI research briefs and tools to streamline due diligence and focus on high-probability setups</div>
+        </div>
+        
+        <div class="success-card">
+          <div class="success-icon">📈</div>
+          <div class="success-title">Improved Decision Confidence</div>
+          <div class="success-description">Members report 68% higher confidence in their investment choices using our data-driven approach</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <h3 class="section-title">Discover High-Probability Market Opportunities</h3>
+      <p class="section-subtitle">Our advanced tools and expert analysis help you identify potential opportunities in U.S. markets</p>
+      
+      <div class="columns">
+        <div class="card">
+          <h4>Advanced Opportunity Detection</h4>
+          <p class="small" style="margin-top:8px;color:var(--muted)">Our AI-powered system scans thousands of data points to identify potential high-conviction opportunities. Get alerts on potential market-moving developments before they become mainstream.</p>
+          <ul style="color:var(--muted);margin-top:8px">
+            <li>Early trend identification</li>
+            <li>Pattern recognition alerts</li>
+            <li>Sentiment analysis</li>
+            <li>High-probability setup detection</li>
+          </ul>
+          <div style="margin-top:16px"><button class="primary" onclick="openModal('diagnose','Service - Account Diagnostic')">Discover Opportunities</button></div>
+        </div>
+
+        <div class="card">
+          <h4>AI-Powered Market Intelligence</h4>
+          <p class="small" style="margin-top:8px;color:var(--muted)">Access real-time market intelligence, sector heatmaps, and AI-generated insights that highlight potential opportunities. Our tools help you focus on what matters most.</p>
+          <ul style="color:var(--muted);margin-top:8px">
+            <li>Real-time opportunity alerts</li>
+            <li>Sector momentum analysis</li>
+            <li>AI-driven insights</li>
+            <li>Custom watchlists</li>
+          </ul>
+          <div style="margin-top:16px"><button class="ghost" onclick="openModal('trial','Service - Tools Demo')">Try AI Tools</button></div>
+        </div>
+
+        <div class="card">
+          <h4>Expert Community & VIP Insights</h4>
+          <p class="small" style="margin-top:8px;color:var(--muted)">Join our exclusive community where top analysts and vetted experts share high-conviction ideas. Get access to VIP briefings and real-time market discussions.</p>
+          <ul style="color:var(--muted);margin-top:8px">
+            <li>Expert high-conviction ideas</li>
+            <li>Live market discussions</li>
+            <li>VIP opportunity briefings</li>
+            <li>Real-time Q&A sessions</li>
+          </ul>
+          <div style="margin-top:16px"><button class="ghost" onclick="openModal('community','Service - Community Join')">Join Elite Community</button></div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- COMMUNITY SHOWCASE -->
+    <section class="section">
+      <h3 class="section-title">Inside Our Exclusive Investment Community</h3>
+      <p class="section-subtitle">Real discussions and high-conviction insights from our elite community members</p>
+      
+      <div class="community-showcase">
+        <div class="community-card">
+          <div class="community-header">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Michael" class="community-avatar">
+            <div>
+              <div class="community-author">Michael T.</div>
+              <div class="community-role">Portfolio Manager, Chicago</div>
+            </div>
+          </div>
+          <div class="community-content">
+            "The AI opportunity alerts helped me identify a potential breakout in semiconductors weeks before the major move. The early detection was incredibly valuable."
+          </div>
+          <div class="community-meta">
+            <span>#opportunity-alerts</span>
+            <span>2 days ago</span>
+          </div>
+        </div>
+        
+        <div class="community-card">
+          <div class="community-header">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Sarah" class="community-avatar">
+            <div>
+              <div class="community-author">Sarah J.</div>
+              <div class="community-role">Retail Investor, Austin</div>
+            </div>
+          </div>
+          <div class="community-content">
+            "The high-conviction brief on renewable energy stocks gave me the confidence to position early. The analysis was spot-on about the upcoming catalyst."
+          </div>
+          <div class="community-meta">
+            <span>#high-conviction</span>
+            <span>1 week ago</span>
+          </div>
+        </div>
+        
+        <div class="community-card">
+          <div class="community-header">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="David" class="community-avatar">
+            <div>
+              <div class="community-author">David R.</div>
+              <div class="community-role">Financial Advisor, Miami</div>
+            </div>
+          </div>
+          <div class="community-content">
+            "Using MarketLens high-probability setups with my clients has transformed our investment approach. The early trend identification is a game-changer."
+          </div>
+          <div class="community-meta">
+            <span>#trend-identification</span>
+            <span>3 days ago</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section two-col">
+      <div class="card">
+        <h3>How MarketLens Helps You Discover Opportunities</h3>
+        <ol style="color:var(--muted);margin-top:16px">
+          <li style="margin-bottom:16px"><strong>Get AI-powered opportunity alerts</strong> — our system scans thousands of data points to identify potential high-probability setups before they become widely known.</li>
+          <li style="margin-bottom:16px"><strong>Access expert high-conviction insights</strong> — our team of market experts provides detailed analysis on potential market-moving opportunities.</li>
+          <li style="margin-bottom:16px"><strong>Join our exclusive community</strong> — discuss potential opportunities with like-minded investors and get real-time market intelligence.</li>
+          <li><strong>Make informed decisions</strong> — use our insights alongside your existing brokerage to potentially improve your investment outcomes.</li>
+        </ol>
+        <div style="margin-top:20px;color:var(--muted)" class="small"><strong>Disclaimer:</strong> MarketLens provides educational analysis and research. All investments involve risk, and past performance does not guarantee future results. We do not provide personalized investment advice.</div>
+      </div>
+
+      <aside class="card">
+        <h4 style="margin-top:0">Choose Your Access Level</h4>
+        <div class="pricing" style="margin-top:16px">
+          <div class="plan">
+            <div class="plan-header">
+              <div class="plan-title">Insight</div>
+              <div class="plan-price">$0</div>
+            </div>
+            <div class="plan-features">
+              <div class="plan-feature"><span class="feature-check">✓</span> Daily opportunity alerts</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> Market analysis articles</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> Basic community access</div>
+            </div>
+            <div style="margin-top:16px"><button class="primary" onclick="openModal('subscribe','Plan Free')">Get Free Access</button></div>
+          </div>
+
+          <div class="plan">
+            <div class="plan-header">
+              <div class="plan-title">Pro Trader</div>
+              <div class="plan-price">$79/mo</div>
+            </div>
+            <div class="plan-features">
+              <div class="plan-feature"><span class="feature-check">✓</span> Real-time opportunity alerts</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> Full AI tools access</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> Complete community</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> High-conviction briefs</div>
+            </div>
+            <div style="margin-top:16px"><button class="ghost" onclick="openModal('trial','Plan Pro Trial')">Start 7-Day Trial</button></div>
+          </div>
+
+          <div class="plan">
+            <div class="plan-header">
+              <div class="plan-title">VIP Elite</div>
+              <div class="plan-price">$249/mo</div>
+            </div>
+            <div class="plan-features">
+              <div class="plan-feature"><span class="feature-check">✓</span> Priority WhatsApp alerts</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> Advanced opportunity detection</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> VIP expert briefings</div>
+              <div class="plan-feature"><span class="feature-check">✓</span> Custom opportunity scans</div>
+            </div>
+            <div style="margin-top:16px"><button class="ghost" onclick="openModal('vip','Plan VIP')">Request VIP Access</button></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- TESTIMONIALS & TRUST -->
+    <section class="section">
+      <h3 class="section-title">Trusted by Successful U.S. Investors</h3>
+      <div class="testimonials">
+        <div class="quote">
+          <div class="quote-header">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="James" class="avatar">
+            <div>
+              <div class="quote-author">James S.</div>
+              <div class="quote-location">Dallas, TX</div>
+            </div>
+          </div>
+          <div class="quote-text">
+            "The high-conviction alerts helped me identify a potential opportunity in cybersecurity stocks weeks before the sector breakout. The early detection was incredibly valuable."
+          </div>
+        </div>
+
+        <div class="quote">
+          <div class="quote-header">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Amanda" class="avatar">
+            <div>
+              <div class="quote-author">Amanda R.</div>
+              <div class="quote-location">San Francisco, CA</div>
+            </div>
+          </div>
+          <div class="quote-text">
+            "The AI opportunity detection spots patterns I would never see on my own. It's like having a team of expert analysts working 24/7 to find potential market opportunities."
+          </div>
+        </div>
+
+        <div class="quote">
+          <div class="quote-header">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Marcus" class="avatar">
+            <div>
+              <div class="quote-author">Marcus K.</div>
+              <div class="quote-location">New York, NY</div>
+            </div>
+          </div>
+          <div class="quote-text">
+            "The VIP expert briefings provide insights I can't find anywhere else. The early identification of potential market-moving developments has been a game-changer for my portfolio."
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-badge">🔒 SSL Secured</div>
+        <div class="trust-badge">📈 5+ Years Experience</div>
+        <div class="trust-badge">💬 24h Response Time</div>
+        <div class="trust-badge">⭐ 4.9/5 Rating</div>
+        <div class="trust-badge">🇺🇸 U.S. Focused</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section card">
+      <h3>Frequently Asked Questions</h3>
+      <div style="margin-top:20px">
+        <p class="small"><strong>Q:</strong> Do you guarantee specific investment returns?<br><strong>A:</strong> No. MarketLens provides educational analysis and research to help identify potential opportunities. All investments involve risk, and past performance does not guarantee future results.</p>
+
+        <p class="small"><strong>Q:</strong> How do you identify high-probability opportunities?<br><strong>A:</strong> Our AI-powered system analyzes thousands of data points including market trends, sentiment, technical patterns, and fundamental data to identify potential high-conviction setups.</p>
+
+        <p class="small"><strong>Q:</strong> How does WhatsApp support work?<br><strong>A:</strong> After you submit the form we'll contact you on WhatsApp to provide access to our insights, arrange a demo, or schedule VIP briefings. All communication focuses on educational guidance.</p>
+
+        <p class="small"><strong>Q:</strong> Are your experts registered advisors?<br><strong>A:</strong> Some contributors are registered professionals. Any formal advisory relationship would be documented separately; our platform's primary function is education and community discussion.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">MarketLens</div>
+          <div class="footer-disclaimer">© 2025 MarketLens. Investment involves risk. This site provides educational content and research tools — not personal investment advice. MarketLens is not a broker-dealer and does not execute trades. Past performance does not guarantee future results.</div>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy</a>
+          <a href="#" class="footer-link">Terms</a>
+          <a href="#" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal (form -> WhatsApp) -->
+  <div id="backdrop" class="backdrop" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h3 id="modalTitle">Get Exclusive MarketLens Access</h3>
+      <p class="modal-subtitle" id="modalSub">Fill in your details; we'll reach out on WhatsApp to provide immediate access to our high-conviction insights.</p>
+      
+      <div class="progress-indicator">
+        <div class="progress-step step-active">
+          <div class="step-number">1</div>
+          <div class="step-label">Details</div>
+        </div>
+        <div class="progress-step">
+          <div class="step-number">2</div>
+          <div class="step-label">WhatsApp</div>
+        </div>
+        <div class="progress-step">
+          <div class="step-number">3</div>
+          <div class="step-label">Get Access</div>
+        </div>
+      </div>
+
+      <form id="leadForm" onsubmit="return handleForm(event)">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" placeholder="e.g. Alex Johnson" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp number (include country code)</label>
+          <input id="phone" name="phone" placeholder="e.g. +1 415 555 2671" required />
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:24px">
+          <div class="small">Get immediate access to our high-conviction market insights.</div>
+          <div><button type="submit" class="primary">Get Access Now</button></div>
+        </div>
+      </form>
+
+      <div style="margin-top:16px;font-size:12px;color:var(--muted)">By contacting us you agree to our privacy policy. We will only use your contact information to provide the requested service.</div>
+    </div>
+  </div>
+
+  <script>
+    // CONFIG: replace with your numeric WhatsApp number (no plus or spaces), e.g. '14155552671'
+    const CONFIG = {whatsappPhone: '1234567890', site:'marketlens.us'};
+
+    function openModal(action, label){
+      document.getElementById('backdrop').style.display = 'flex';
+      let title = 'Get Exclusive MarketLens Access';
+      if (action === 'diagnose') title = 'Discover High-Probability Opportunities';
+      if (action === 'vip') title = 'VIP Elite Access';
+      
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalSub').innerText = `Source: ${label} — we'll contact you on WhatsApp to provide immediate access.`;
+      window._lastCTA = {action,label,time:Date.now()};
+    }
+    
+    function closeModal(){ 
+      document.getElementById('backdrop').style.display = 'none'; 
+    }
+
+    function handleForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phoneRaw = document.getElementById('phone').value.trim();
+
+      if(!name||!email||!phoneRaw){ 
+        alert('Please fill in name, email and WhatsApp number.'); 
+        return false; 
+      }
+      
+      const phoneDigits = phoneRaw.replace(/\D/g,'');
+      const targetPhone = phoneDigits.length>=6 ? phoneDigits : CONFIG.whatsappPhone;
+
+      const lines = [];
+      lines.push(`Hello — I want immediate access to MarketLens high-conviction insights!`);
+      lines.push(`Name: ${name}`);
+      lines.push(`Email: ${email}`);
+      lines.push(`Source: ${window._lastCTA ? window._lastCTA.label : 'website'}`);
+      lines.push(`Please provide access to your exclusive market insights.`);
+
+      const wa = `https://wa.me/${targetPhone}?text=${encodeURIComponent(lines.join('\n'))}`;
+
+      try{ 
+        if(window.dataLayer) window.dataLayer.push({
+          event:'lead',
+          lead:{
+            name,
+            email,
+            phone:phoneRaw,
+            source:window._lastCTA
+          }
+        }); 
+      }catch(e){}
+
+      closeModal();
+      window.open(wa,'_blank');
+      return false;
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{ 
+      window._pageTs = Date.now(); 
+      
+      // Exit intent popup
+      document.addEventListener('mouseout', function(e) {
+        if (e.clientY < 0) {
+          openModal('exit_intent', 'Exit Intent Popup');
+        }
+      });
+      
+      // Simulate market data updates
+      setInterval(updateMarketData, 5000);
+    });
+    
+    function updateMarketData() {
+      // This is a simplified simulation - in a real implementation,
+      // you would fetch data from a financial API
+      const indices = document.querySelectorAll('.index-card');
+      indices.forEach(card => {
+        const changeElement = card.querySelector('.index-change');
+        const valueElement = card.querySelector('.index-value');
+        
+        // Simulate small price changes
+        if (Math.random() > 0.3) {
+          const currentValue = parseFloat(valueElement.textContent.replace(/,/g, ''));
+          const changePercent = (Math.random() * 0.5 - 0.25) / 100;
+          const newValue = currentValue * (1 + changePercent);
+          const changeDisplay = (changePercent * 100).toFixed(2);
+          
+          valueElement.textContent = newValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          
+          if (changePercent > 0) {
+            changeElement.textContent = `+${changeDisplay}%`;
+            changeElement.className = 'index-change positive';
+          } else {
+            changeElement.textContent = `${changeDisplay}%`;
+            changeElement.className = 'index-change negative';
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
