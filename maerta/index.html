@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Remote Work Opportunities in Malta | Work From Home</title>
-  <meta name="description" content="Explore remote work opportunities in Malta. Work from home with flexible hours. No registration fees. Clear terms and privacy first." />
+  <title>Xogħol Remot Malta | Opportunitajiet Flessibbli mid-Dar</title>
+  <meta name="description" content="Esplora l-aqwa opportunitajiet ta' xogħol remot f'Malta. Aħdem minn darrek b'sigħat flessibbli u tħallas regolari. Applika issa!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17658750857"></script>
@@ -16,1167 +18,2233 @@
     gtag('js', new Date());
     gtag('config', 'AW-17658750857');
     
-    // Enhanced conversion reporting function
+    // Enhanced conversion reporting with fallback
     function gtag_report_conversion(url) {
-      var callback = function () {
+      const callback = function () {
         if (typeof(url) != 'undefined') {
-          // Add timeout to ensure event is sent
           setTimeout(function() {
-            window.location = url;
+            // Open WhatsApp link in new tab
+            const newWindow = window.open(url, '_blank');
+            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+              window.location.href = url;
+            }
           }, 300);
         }
       };
       
-      // Send conversion event
-      gtag('event', 'conversion', {
-        'send_to': 'AW-17658750857/6DRCCK-7gcobEInPrORB',
-        'event_callback': callback,
-        'value': 18,
-        'currency': 'USD'
-      });
+      // Send conversion event with retry mechanism
+      let eventSent = false;
+      const maxAttempts = 2;
+      let attempts = 0;
       
-      // Send additional lead event for better tracking
-      gtag('event', 'generate_lead', {
-        'currency': 'USD',
-        'value': 18
-      });
+      const sendEvent = () => {
+        try {
+          if (!eventSent) {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-17658750857/6DRCCK-7gcobEInPrORB',
+              'event_callback': callback,
+              'value': 18,
+              'currency': 'USD'
+            });
+            
+            gtag('event', 'generate_lead', {
+              'currency': 'USD',
+              'value': 18
+            });
+            eventSent = true;
+          }
+        } catch (e) {
+          attempts++;
+          if (attempts < maxAttempts) {
+            setTimeout(sendEvent, 100);
+          } else {
+            callback();
+          }
+        }
+      };
+      
+      sendEvent();
+      
+      // Fallback - always open WhatsApp after timeout
+      setTimeout(() => {
+        if (!eventSent) {
+          callback();
+        }
+      }, 1000);
       
       return false;
     }
   </script>
   
   <style>
-    /* 样式部分保持不变，只修改了部分类名 */
-    :root{
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --muted: #64748b;
-      --text: #1e293b;
-      --white: #ffffff;
-      --primary: #CF142B;
-      --primary-600: #a01021;
-      --primary-300: #e88d99;
-      --accent: #E5A900;
-      --accent-light: #f5d780;
-      --green: #10b981;
-      --yellow: #f59e0b;
-      --red: #ef4444;
-      --ring: 0 0 0 3px rgba(207, 20, 43, 0.25);
-      --radius: 10px;
-      --transition: all 0.3s ease;
-      --shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04);
+    /* === ROOT VARIABLES === */
+    :root {
+      /* Malta-inspired color palette */
+      --primary: #CF142B;      /* Malta Red */
+      --secondary: #E5A900;    /* Malta Gold */
+      --accent: #007F3D;       /* Malta Green */
+      --light: #F8F9FA;
+      --dark: #1A202C;
+      --gray-100: #F7FAFC;
+      --gray-200: #EDF2F7;
+      --gray-300: #E2E8F0;
+      --gray-600: #718096;
+      --gray-800: #2D3748;
+      
+      /* Typography */
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      /* Spacing - Reduced for mobile */
+      --space-xs: 0.25rem;
+      --space-sm: 0.75rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      
+      /* Border radius */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 3px 10px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 5px 20px rgba(0, 0, 0, 0.15);
+      
+      /* Transitions */
+      --transition-fast: 0.15s ease;
+      --transition-base: 0.25s ease;
     }
-
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;line-height:1.5; font-size: 16px;}
-    img{max-width:100%;display:block}
-    a{color:var(--text);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{width:min(1120px,94%);margin-inline:auto}
-
-    .nav{position:sticky;top:0;z-index:50;background:rgba(248, 250, 252, 0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,0,0,.06); box-shadow: 0 1px 3px rgba(0,0,0,0.05);}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{font-weight:800;letter-spacing:.3px;font-size:1.3rem; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-    .nav-links{display:flex;gap:16px;align-items:center}
-    .nav-link{opacity:.85; transition: var(--transition); font-size: 0.95rem; font-weight: 500;}
-    .nav-link:hover{opacity:1; color: var(--primary);}
-
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border-radius:8px;border:0;font-weight:600;cursor:pointer;transition:var(--transition); font-size: 0.95rem;}
-    .btn-lg{padding:12px 24px;font-size:1.05rem;}
-    .btn-block{width:100%}
-    .btn-primary{background: var(--primary);color:white; box-shadow: var(--shadow);}
-    .btn-primary:hover{background:var(--primary-600); transform: translateY(-2px); box-shadow: var(--shadow-lg);}
-    .btn:focus{outline:none;box-shadow:var(--ring)}
     
-    .hero{position:relative;padding:50px 0 30px; overflow: hidden; background: linear-gradient(135deg, #fde8e8 0%, #fef7f0 50%, #fff9e6 100%);}
-    .hero-grid{display:grid;grid-template-columns:1fr;gap:20px;align-items:stretch}
-    .hero-top {text-align: center; max-width: 800px; margin: 0 auto;}
-    .hero-bottom {display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; align-items: stretch;}
-    
-    .hero-copy h1{font-size:38px;margin:0 0 12px; line-height: 1.2; font-weight: 800; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-    .subtitle{color:var(--muted);max-width:48ch;margin-bottom:12px; font-size: 1.1rem; line-height: 1.6;}
-    .hero-points{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px;color:#475569; font-weight: 500;}
-    .hero-points li {display: flex; align-items: center; gap: 8px; font-size: 0.95rem;}
-    .hero-points li:before {content: "✓"; color: var(--green); font-weight: bold;}
-    
-    .hero-bg{position:absolute;inset:0;z-index:-1;background:
-        linear-gradient(180deg,rgba(253, 232, 232, 0.85),rgba(254, 247, 240, 0.95)),
-        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;}
-
-    .logos{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px; align-items: center; justify-content: center;}
-    .logo{font-size:13px;padding:6px 12px;border:1px dashed rgba(0,0,0,.15);border-radius:8px;color:#475569;background:rgba(255,255,255,.7); transition: var(--transition);}
-    .logo:hover {transform: translateY(-2px); border-color: var(--primary); color: var(--primary);}
-
-    .form-card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);padding:20px; box-shadow: var(--shadow-lg); position: relative;}
-    .form-card:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
-        border-radius: var(--radius) var(--radius) 0 0;
+    /* === RESET & BASE STYLES === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .form-title{margin:0 0 8px; font-size: 22px; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;}
-    .form-note{color:var(--muted);margin:0 0 16px;font-size:0.95rem; line-height: 1.5;}
-    .field{margin-bottom:16px; position: relative;}
-    .field.check{display:flex;align-items:flex-start; gap: 8px;}
-    .field.check label {margin-bottom: 0; display: inline; font-weight: normal;}
-    label{display:block;margin-bottom:6px;font-weight:600; font-size: 0.95rem;}
-    .req{color:var(--green)}
-    input,select{width:100%;background:#f8fafc;color:var(--text);border:1px solid rgba(0,0,0,.15);border-radius:8px;padding:12px 14px;outline:none; font-family: inherit; font-size: 0.95rem; transition: var(--transition);}
-    input:focus,select:focus{box-shadow:var(--ring);border-color:var(--primary); transform: translateY(-1px);}
-    .form-status{margin-top:12px;font-size:0.92rem; padding: 10px; border-radius: 6px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);}
-    .form-status.success{color:#059669}
-    .form-status.error{color:#dc2626; background: rgba(220, 38, 38, 0.1); border-color: rgba(220, 38, 38, 0.2);}
-
-    /* Phone input styles */
-    .phone-input-group {display: flex;}
-    .country-code {flex: 0 0 auto; background: rgba(0,0,0,0.05); padding: 12px 14px; border: 1px solid rgba(0,0,0,.15); border-right: none; border-radius: 8px 0 0 8px; display: flex; align-items: center;}
-    .phone-input {border-radius: 0 8px 8px 0; flex: 1;}
     
-    .progress-bar {display: flex; margin: 16px 0; gap: 4px;}
-    .progress-step {flex: 1; height: 4px; background: rgba(0,0,0,0.1); border-radius: 2px;}
-    .progress-step.active {background: linear-gradient(90deg, var(--primary), var(--accent));}
-
-    /* Modal styles */
-    .modal {position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease;}
-    .modal.active {opacity: 1; visibility: visible;}
-    .modal-content {background: var(--card); border-radius: var(--radius); padding: 24px; max-width: 400px; width: 90%; text-align: center; box-shadow: var(--shadow-lg); position: relative;}
-    .modal-title {font-size: 1.4rem; margin-bottom: 12px; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;}
-    .modal-message {margin-bottom: 20px; line-height: 1.5; color: var(--muted);}
-    .modal-btn {background: linear-gradient(90deg, var(--primary), var(--accent)); color: white; border: none; border-radius: 6px; padding: 10px 20px; font-weight: 600; cursor: pointer; transition: var(--transition);}
-    .modal-btn:hover {transform: translateY(-2px); box-shadow: var(--shadow);}
-
-    /* Close button for modal */
-    .modal-close { position: absolute; top: 12px; right: 12px; background: transparent; border: none; font-size: 20px; color: var(--muted); cursor: pointer; }
-    .modal-close:hover { color: var(--text); }
-
-    /* Age warning modal */
-    .age-warning-modal .modal-content {
-      max-width: 420px;
+    html {
+      scroll-behavior: smooth;
     }
-    .age-warning-modal .modal-title {
-      background: linear-gradient(90deg, #ef4444, #f97316);
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--gray-800);
+      background-color: var(--light);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--dark);
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+    
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    ul, ol {
+      list-style: none;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-sm);
+    }
+    
+    .section {
+      padding: var(--space-lg) 0;
+    }
+    
+    @media (max-width: 768px) {
+      .section {
+        padding: var(--space-md) 0;
+      }
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--space-md);
+    }
+    
+    .section-title {
+      font-size: 1.75rem;
+      margin-bottom: var(--space-sm);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
-    .section{padding:50px 0}
-    .section.alt{background:#f1f5f9}
-    h2{margin:0 0 16px;font-size:30px; font-weight: 800; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-    .muted{color:var(--muted); line-height: 1.6;}
-    .small{font-size:0.88rem}
     
-    .section-header {text-align: center; max-width: 700px; margin: 0 auto 40px;}
-    
-    .cards{display:grid;gap:18px}
-    .two-col{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .three-col{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);padding:18px; transition: var(--transition); box-shadow: var(--shadow);}
-    .card:hover {transform: translateY(-5px); border-color: rgba(207, 20, 43, 0.3); box-shadow: var(--shadow-lg);}
-    .card-media{height:140px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--accent)); position: relative; overflow: hidden;}
-    .card-media:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(207, 20, 43, 0.1), rgba(229, 169, 0, 0.1));
-    }
-    .media-pt{background-image:linear-gradient(135deg, rgba(207, 20, 43, 0.7), rgba(229, 169, 0, 0.7)), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;}
-    .media-ft{background-image:linear-gradient(135deg, rgba(229, 169, 0, 0.7), rgba(207, 20, 43, 0.7)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80') center/cover no-repeat;}
-    .card-body h3{margin:16px 0 12px; font-size: 1.3rem; font-weight: 700;}
-    
-    .earnings-badge {background: linear-gradient(90deg, var(--green), #34d399); color: white; padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-bottom: 12px;}
-    
-    .list{padding-left:0;margin:0;display:grid;gap:8px}
-    .list li{margin-left:0; display: flex; align-items: flex-start; gap: 8px; font-size: 0.95rem;}
-    .list li:before {content: "•"; color: var(--primary); font-weight: bold;}
-    
-    .bonus{text-align:center; position: relative;}
-    .bonus-icon{font-size:32px;margin-bottom:12px; display: inline-flex; width: 60px; height: 60px; background: rgba(207, 20, 43, 0.1); border-radius: 50%; align-items: center; justify-content: center;}
-    .bonus:hover .bonus-icon {transform: scale(1.05); transition: var(--transition);}
-    
-    .requirements{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
-    .req-item{display:flex;gap:12px;background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:16px; transition: var(--transition); box-shadow: var(--shadow);}
-    .req-item:hover {border-color: rgba(207, 20, 43, 0.3); transform: translateY(-3px); box-shadow: var(--shadow-lg);}
-    .req-icon{font-size:24px; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-    
-    .benefits-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
-    .benefits-media{height:240px;border-radius:12px;background:
-        radial-gradient(120px 120px at 30% 40%, var(--primary-300) 0%, transparent 60%),
-        linear-gradient(135deg,var(--primary),var(--accent)); position: relative; overflow: hidden;}
-    .benefits-media:after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url('https://images.unsplash.com/photo-1551836026-d5c88ac5d4d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80') center/cover no-repeat;
-        opacity: 0.4;
-        mix-blend-mode: overlay;
-    }
-    .stats{list-style:none;padding:0;margin:0 0 16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-    .stats li{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:16px;text-align:center; transition: var(--transition); box-shadow: var(--shadow);}
-    .stats li:hover {transform: translateY(-3px); border-color: rgba(207, 20, 43, 0.3);}
-    .stats strong {display: block; font-size: 1.5rem; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; font-weight: 700;}
-    
-    .testimonial{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius);padding:20px;margin:0; position: relative; transition: var(--transition); box-shadow: var(--shadow);}
-    .testimonial:hover {transform: translateY(-3px); border-color: rgba(207, 20, 43, 0.3);}
-    .testimonial:before {
-        content: """;
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        font-size: 40px;
-        color: rgba(207, 20, 43, 0.2);
-        font-family: Georgia, serif;
-    }
-    .testimonial p{margin:0 0 16px; font-style: italic; position: relative; z-index: 1; font-size: 0.95rem;}
-    .testimonial footer {background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; font-size: 0.95rem;}
-    
-    .avatar {width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(90deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 12px; font-size: 1.1rem; color: white;}
-    
-    .cta{background:linear-gradient(135deg, #fde8e8 0%, #fef7f0 50%, #fff9e6 100%); padding: 50px 0; text-align: center;}
-    .cta-inner{max-width: 700px; margin: 0 auto;}
-    .cta h2 {margin-bottom: 16px;}
-    
-    .faq{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:18px;margin-bottom:16px; transition: var(--transition); box-shadow: var(--shadow);}
-    .faq:hover {border-color: rgba(207, 20, 43, 0.3);}
-    .faq summary{cursor:pointer; font-weight: 600; padding: 8px 0; font-size: 1rem;}
-    .faq div {padding: 12px 0; color: var(--muted); font-size: 0.95rem;}
-    
-    .footer{border-top:1px solid rgba(0,0,0,.08);padding:32px 0 20px;background:#f1f5f9}
-    .footer-grid{display:flex;justify-content:space-between;gap:16px;align-items:flex-start; margin-bottom: 20px;}
-    .footer-links{display:flex;gap:16px;flex-wrap:wrap}
-    
-    .security-badge {display: flex; align-items: center; gap: 10px; margin-top: 16px; padding: 12px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; font-size: 0.9rem;}
-    .security-badge svg {flex-shrink: 0; width: 20px; height: 20px;}
-    
-    /* Opportunity elements */
-    .opportunity-badge {background: linear-gradient(90deg, var(--primary), var(--accent)); color: white; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-bottom: 12px;}
-    
-    /* Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
     }
     
-    .fade-in {
-      animation: fadeIn 0.6s ease forwards;
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--gray-600);
+      max-width: 600px;
+      margin: 0 auto;
     }
     
-    .delay-1 { animation-delay: 0.15s; }
-    .delay-2 { animation-delay: 0.3s; }
-    .delay-3 { animation-delay: 0.45s; }
-    
-    /* Pulse animation for CTA */
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    /* === BUTTONS === */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-family: var(--font-heading);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-base);
+      text-align: center;
     }
     
-    .pulse {
-      animation: pulse 2s infinite;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: var(--shadow-md);
     }
     
-    /* User photos section */
-    .user-photos {display: flex; justify-content: center; margin: 20px 0; gap: 12px; flex-wrap: wrap;}
-    .user-photo {width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);}
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
     
-    /* Hero right content */
-    .hero-right-content {display: flex; flex-direction: column; gap: 20px;}
-    .hero-right-card {background: var(--card); border-radius: var(--radius); padding: 20px; border: 1px solid rgba(0,0,0,.08); box-shadow: var(--shadow);}
-    .hero-right-card h3 {margin-top: 0; margin-bottom: 12px; font-size: 1.2rem; background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;}
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
     
-    /* Malta elements */
-    .malta-flag {display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 6px 12px; background: rgba(0,0,0,0.05); border-radius: 20px;}
-    .malta-flag img {width: 24px; height: 14px; border-radius: 2px;}
+    .btn-secondary:hover {
+      background: var(--gray-100);
+    }
     
-    /* Local companies */
-    .local-companies {display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0;}
-    .company-logo {padding: 10px 16px; background: var(--card); border-radius: 8px; border: 1px solid rgba(0,0,0,.08); font-weight: 600; font-size: 0.9rem; transition: var(--transition);}
-    .company-logo:hover {transform: translateY(-3px); border-color: var(--primary);}
+    .btn-lg {
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+    }
     
-    /* Language content */
-    .language-content {
+    .btn-block {
+      width: 100%;
+    }
+    
+    .btn-icon {
+      font-size: 1.1em;
+    }
+    
+    /* === HEADER & NAVIGATION === */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0.75rem 0;
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+    
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .nav-links {
       display: none;
     }
     
-    .language-content.active {
+    @media (min-width: 1024px) {
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .nav-cta {
+      display: none;
+    }
+    
+    @media (min-width: 1024px) {
+      .nav-cta {
+        display: block;
+        margin-left: 0.5rem;
+      }
+    }
+    
+    .mobile-menu-btn {
       display: block;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
     }
     
-    /* Earnings disclaimer */
-    .earnings-disclaimer {
-      font-size: 0.85rem;
-      color: var(--muted);
+    @media (min-width: 1024px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+    
+    /* === URGENCY BAR === */
+    .urgency-bar {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.75rem 0;
+      position: relative;
+      overflow: hidden;
+      margin-top: 60px;
+    }
+    
+    .urgency-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    @media (min-width: 768px) {
+      .urgency-bar {
+        padding: 1rem 0;
+      }
+      
+      .urgency-container {
+        justify-content: flex-start;
+      }
+    }
+    
+    .urgency-scroll {
+      display: flex;
+      animation: scrollText 25s linear infinite;
+      white-space: nowrap;
+    }
+    
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    @media (max-width: 767px) {
+      .urgency-scroll {
+        animation: scrollText 20s linear infinite;
+      }
+    }
+    
+    .urgency-content {
+      display: inline-flex;
+      gap: 2rem;
+      padding: 0 1rem;
+      align-items: center;
+    }
+    
+    .urgency-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .urgency-icon {
+      font-size: 1em;
+    }
+    
+    /* === HERO SECTION === */
+    .hero {
+      padding: var(--space-md) 0;
+      background: linear-gradient(135deg, rgba(254, 242, 242, 0.9) 0%, rgba(255, 251, 235, 0.9) 100%);
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        padding: var(--space-lg) 0;
+      }
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(90deg, rgba(254, 242, 242, 0.95) 0%, rgba(254, 242, 242, 0.85) 50%, rgba(254, 242, 242, 0.7) 100%),
+        url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center right;
+      z-index: 1;
+    }
+    
+    @media (max-width: 1024px) {
+      .hero-bg {
+        background: 
+          linear-gradient(90deg, rgba(254, 242, 242, 0.95) 0%, rgba(254, 242, 242, 0.85) 70%, rgba(254, 242, 242, 0.7) 100%),
+          url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center right;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-bg {
+        background: 
+          linear-gradient(rgba(254, 242, 242, 0.95) 0%, rgba(254, 242, 242, 0.85) 100%),
+          url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');
+        background-size: cover;
+        background-position: center;
+      }
+    }
+    
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      position: relative;
+      z-index: 2;
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: var(--space-lg);
+      }
+    }
+    
+    .hero-content {
       text-align: center;
-      margin-top: 16px;
-      padding: 12px;
-      background: rgba(0,0,0,0.03);
-      border-radius: 6px;
     }
     
-    /* Mobile responsiveness */
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr; gap: 20px;}
-      .hero-bottom {grid-template-columns: 1fr; gap: 20px;}
-      .two-col{grid-template-columns:1fr; gap: 16px;}
-      .three-col{grid-template-columns:1fr; gap: 16px;}
-      .requirements{grid-template-columns:repeat(2,minmax(0,1fr)); gap: 12px;}
-      .benefits-grid{grid-template-columns:1fr; gap: 20px;}
-      .cta-inner{flex-direction:column;align-items:flex-start}
-      .stats{grid-template-columns:1fr; gap: 12px;}
-      .hero-copy h1 {font-size: 32px;}
-      h2 {font-size: 28px;}
-      .section {padding: 40px 0;}
-      .section-header {margin-bottom: 30px;}
-      .nav-links .nav-link {display: none;}
+    @media (min-width: 1024px) {
+      .hero-content {
+        text-align: left;
+      }
     }
     
-    @media (max-width: 640px) {
-      .nav-links {gap: 8px;}
-      .btn {padding: 8px 16px; font-size: 0.92rem;}
-      .btn-lg {padding: 10px 20px;}
-      .footer-grid {flex-direction: column; gap: 16px;}
-      .footer-links {flex-direction: column; gap: 8px;}
-      .requirements {grid-template-columns: 1fr; gap: 10px;}
-      .hero {padding: 40px 0 20px;}
-      .hero-copy h1 {font-size: 28px;}
-      h2 {font-size: 26px;}
-      .section {padding: 32px 0;}
-      .cta {padding: 40px 0;}
-      .logos {justify-content: center;}
-      .form-card {padding: 20px;}
-      .card {padding: 16px;}
-      .testimonial {padding: 16px;}
-      .stats li {padding: 12px;}
-      .benefits-media {height: 200px;}
-      .user-photos {gap: 8px;}
-      .user-photo {width: 50px; height: 50px;}
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      box-shadow: var(--shadow-sm);
+      font-size: 0.875rem;
+    }
+    
+    .hero-title {
+      font-size: 1.75rem;
+      margin-bottom: var(--space-sm);
+      line-height: 1.2;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--gray-600);
+      margin-bottom: var(--space-md);
+    }
+    
+    @media (min-width: 768px) {
+      .hero-subtitle {
+        font-size: 1.125rem;
+      }
+    }
+    
+    .hero-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: var(--space-md);
     }
     
     @media (max-width: 480px) {
-      .hero-copy h1 {font-size: 24px;}
-      h2 {font-size: 22px;}
-      .brand {font-size: 1.2rem;}
-      .nav-link {font-size: 0.9rem;}
-      .btn {font-size: 0.9rem;}
-      .hero-points li {font-size: 0.9rem;}
-      .subtitle {font-size: 1rem;}
+      .hero-features {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    
+    .feature-text strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.125rem;
+    }
+    
+    .feature-text p {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+    }
+    
+    /* Mobile CTA moved up */
+    .mobile-cta {
+      margin-bottom: var(--space-md);
+    }
+    
+    @media (min-width: 1024px) {
+      .mobile-cta {
+        display: none;
+      }
+    }
+    
+    /* === APPLICATION FORM === */
+    .form-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .form-subtitle {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+    }
+    
+    .form-step {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .step-item {
+      flex: 1;
+      height: 3px;
+      background: var(--gray-200);
+      border-radius: 2px;
+    }
+    
+    .step-item.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.375rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      font-size: 0.95rem;
+    }
+    
+    .form-label .required {
+      color: var(--primary);
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.875rem;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      transition: var(--transition-fast);
+      background: white;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(207, 20, 43, 0.1);
+    }
+    
+    .phone-group {
+      display: flex;
+    }
+    
+    .country-code {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem;
+      background: var(--gray-100);
+      border: 1.5px solid var(--gray-300);
+      border-right: none;
+      border-radius: var(--radius-md) 0 0 var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    
+    .phone-input {
+      flex: 1;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-check-input {
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+    }
+    
+    .form-check-label {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+    
+    .form-check-label a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .form-check-label a:hover {
+      text-decoration: underline;
+    }
+    
+    .security-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      border-radius: var(--radius-md);
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+    }
+    
+    .security-icon {
+      color: #10B981;
+      font-size: 1rem;
+    }
+    
+    /* Hero form - show on mobile */
+    .hero-form {
+      display: block;
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-form {
+        display: block;
+      }
+    }
+    
+    /* === COMPANIES SECTION === */
+    .companies-section {
+      background: var(--gray-100);
+    }
+    
+    .companies-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: var(--space-md);
+    }
+    
+    @media (min-width: 768px) {
+      .companies-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+    }
+    
+    .company-card {
+      background: white;
+      padding: 1.5rem 1rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-base);
+      border: 1px solid var(--gray-200);
+    }
+    
+    .company-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    
+    .company-logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    
+    @media (min-width: 768px) {
+      .company-logo {
+        width: 70px;
+        height: 70px;
+      }
+    }
+    
+    .company-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
+    }
+    
+    .company-jobs {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+    }
+    
+    /* === JOBS SECTION === */
+    .jobs-section {
+      background: white;
+    }
+    
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: var(--space-md);
+    }
+    
+    @media (min-width: 768px) {
+      .jobs-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .job-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition-base);
+      border: 1px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .job-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    
+    .job-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    
+    .job-badge {
+      display: inline-block;
+      padding: 0.375rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .job-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .job-salary {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    
+    .job-features {
+      margin-bottom: 1.5rem;
+    }
+    
+    .job-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--gray-600);
+      font-size: 0.9rem;
+    }
+    
+    .job-feature i {
+      color: var(--primary);
+      width: 18px;
+      font-size: 1rem;
+    }
+    
+    /* === STATS SECTION === */
+    .stats-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+    }
+    
+    .stat-item {
+      padding: 1.5rem 1rem;
+    }
+    
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+      line-height: 1;
+    }
+    
+    @media (min-width: 768px) {
+      .stat-number {
+        font-size: 2.5rem;
+      }
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    @media (min-width: 768px) {
+      .stat-label {
+        font-size: 1rem;
+      }
+    }
+    
+    /* === HOW IT WORKS === */
+    .how-it-works {
+      background: white;
+    }
+    
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: var(--space-md);
+    }
+    
+    @media (min-width: 768px) {
+      .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .step-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-base);
+    }
+    
+    .step-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0 auto 1rem;
+    }
+    
+    .step-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .step-description {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    /* === TESTIMONIALS === */
+    .testimonials-section {
+      background: var(--gray-100);
+    }
+    
+    .testimonials-slider {
+      max-width: 800px;
+      margin: var(--space-md) auto 0;
+      position: relative;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      font-size: 3rem;
+      font-family: Georgia, serif;
+      color: var(--gray-300);
+      line-height: 1;
+    }
+    
+    .testimonial-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .author-info h4 {
+      margin-bottom: 0.125rem;
+      font-size: 1.1rem;
+    }
+    
+    .author-info p {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+    }
+    
+    /* === FAQ === */
+    .faq-section {
+      background: var(--gray-100);
+    }
+    
+    .faq-grid {
+      max-width: 800px;
+      margin: var(--space-md) auto 0;
+    }
+    
+    .faq-item {
+      background: white;
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: var(--transition-base);
+    }
+    
+    .faq-item.active {
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    
+    .faq-question {
+      padding: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+      color: var(--dark);
+    }
+    
+    .faq-question:hover {
+      background: var(--gray-100);
+    }
+    
+    .faq-icon {
+      transition: var(--transition-base);
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+    
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      padding: 0 1.25rem 1.25rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    /* === CTA SECTION === */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+    }
+    
+    .cta-title {
+      font-size: 1.75rem;
+      margin-bottom: var(--space-sm);
+    }
+    
+    @media (min-width: 768px) {
+      .cta-title {
+        font-size: 2rem;
+      }
+    }
+    
+    .cta-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: var(--space-md);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    @media (min-width: 768px) {
+      .cta-subtitle {
+        font-size: 1.125rem;
+      }
+    }
+    
+    /* === FOOTER === */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: var(--space-lg) 0 var(--space-md);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      color: white;
+    }
+    
+    .footer-description {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+    
+    .footer-links h3 {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    
+    .footer-links ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+    }
+    
+    /* === MODAL === */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-base);
+      padding: var(--space-sm);
+    }
+    
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      animation: modalIn 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-600);
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      z-index: 2;
+    }
+    
+    .modal-close:hover {
+      background: var(--gray-100);
+      color: var(--dark);
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .modal-message {
+      text-align: center;
+      color: var(--gray-600);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Age Warning Modal */
+    .age-warning-modal .modal-content {
+      max-width: 400px;
+    }
+    
+    /* === ANIMATIONS === */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+    
+    /* === UTILITY CLASSES === */
+    .text-center {
+      text-align: center;
+    }
+    
+    .text-primary {
+      color: var(--primary);
+    }
+    
+    .text-gradient {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 0.75rem; }
+    .mb-3 { margin-bottom: 1.25rem; }
+    .mb-4 { margin-bottom: 1.5rem; }
+    
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 0.75rem; }
+    .mt-3 { margin-top: 1.25rem; }
+    .mt-4 { margin-top: 1.5rem; }
+    
+    .d-none {
+      display: none;
+    }
+    
+    .d-block {
+      display: block;
+    }
+    
+    @media (min-width: 1024px) {
+      .d-lg-block {
+        display: block;
+      }
+      
+      .d-lg-none {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Top Nav -->
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#top" aria-label="Home">RemoteWorkMalta</a>
-      <nav class="nav-links">
-        <a href="#roles" class="nav-link" data-en="Opportunities" data-mt="Opportunitajiet">Opportunities</a>
-        <a href="#benefits" class="nav-link" data-en="Benefits" data-mt="Vantaġġi">Benefits</a>
-        <a href="#faq" class="nav-link" data-en="FAQ" data-mt="Mistoqsijiet">FAQ</a>
-        <a href="#" class="btn btn-primary" id="openFormBtn" data-en="Apply Now" data-mt="Applika Issa">Apply Now</a>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-laptop-house"></i>
+          </div>
+          <span>XogħolRemot.mt</span>
+        </a>
+        
+        <div class="nav-links">
+          <a href="#opportunitajiet" class="nav-link">Opportunitajiet</a>
+          <a href="#kif" class="nav-link">Kif Taħdem</a>
+          <a href="#testimonials" class="nav-link">Testimonjali</a>
+          <a href="#faq" class="nav-link">Mistoqsijiet</a>
+          <a href="#" class="btn btn-primary nav-cta open-modal-btn">
+            Applika Issa
+          </a>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- Hero + Form -->
-  <section id="top" class="hero">
-    <div class="container hero-grid">
-      <!-- Top section -->
-      <div class="hero-top fade-in">
-        <div class="opportunity-badge" data-en="🌟 NEW OPPORTUNITIES AVAILABLE - APPLY NOW!" data-mt="🌟 OPPORTUNITAJET ĠODDA DISPONIBBLI - APPLIKA IMMA!">🌟 NEW OPPORTUNITIES AVAILABLE - APPLY NOW!</div>
-        <h1 data-en="Explore Flexible Remote Work Opportunities in Malta" data-mt="Esplora Opportunitajiet ta' Xogħol Remot Flessibbli f'Malta">Explore Flexible Remote Work Opportunities in Malta</h1>
-        <p class="subtitle" data-en="Join Maltese residents discovering flexible work-from-home opportunities. Complete simple tasks with flexible hours - zero fees, start when you want." data-mt="Ingħaqad ma' residenti Maltin li qed jiskopru opportunitajiet ta' xogħol mid-dar flessibbli. Kompli xogħol sempliċi b'sigħat flessibbli - bla ħlas, ibda meta trid.">
-          Join Maltese residents discovering flexible work-from-home opportunities. Complete simple tasks with flexible hours - zero fees, start when you want.
-        </p>
-        
-        <!-- Local companies -->
-        <div class="local-companies">
-          <div class="company-logo">Betsson</div>
-          <div class="company-logo">Tipico</div>
-          <div class="company-logo">Genesis Gaming</div>
-          <div class="company-logo">Casumo</div>
-          <div class="company-logo">LeoVegas</div>
+  <!-- Urgency Bar - Fixed vertical centering -->
+  <div class="urgency-bar">
+    <div class="container urgency-container">
+      <div class="urgency-scroll">
+        <div class="urgency-content">
+          <div class="urgency-item">
+            <span class="urgency-icon">🔥</span>
+            <span>MARIA T. ĠABLET €120 illum biss!</span>
+          </div>
+          <div class="urgency-item">
+            <span class="urgency-icon">🚀</span>
+            <span>2 POSTIJIET BISS FADLILNA!</span>
+          </div>
+          <div class="urgency-item">
+            <span class="urgency-icon">💰</span>
+            <span>GIOVANNI S. ĠABEL €450 fil-ġimgħa!</span>
+          </div>
+          <div class="urgency-item">
+            <span class="urgency-icon">⏰</span>
+            <span>OFFERTA SPEĊJALI: €50 bonus!</span>
+          </div>
         </div>
       </div>
-      
-      <!-- Bottom section -->
-      <div class="hero-bottom">
-        <!-- Left: Form -->
-        <aside id="apply" class="form-card fade-in delay-1" aria-label="Application Form">
-          <h2 class="form-title" data-en="Start Your Application Today" data-mt="Ibda l-Applikazzjoni Tiegħek Illum">Start Your Application Today</h2>
-          <p class="form-note" data-en="Complete this quick form to explore available remote work opportunities." data-mt="Kompli dan il-formola malajr biex tesplora l-opportunitajiet disponibbli ta' xogħol remot.">
-            Complete this quick form to explore available remote work opportunities.
+    </div>
+  </div>
+
+  <!-- Hero Section with Background Image -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content fade-in">
+          <div class="hero-badge">
+            <i class="fas fa-bolt"></i>
+            <span>OPPORTUNITÀ ĠDIDA DISPONIBBLI</span>
+          </div>
+          
+          <h1 class="hero-title">
+            Skopri Opportunitajiet ta' <span class="text-gradient">Xogħol Remot f'Malta</span>
+          </h1>
+          
+          <p class="hero-subtitle">
+            Aħdem mid-dar tiegħek, issib il-flessibilità li trid, u tħallas regolari.
+            Bla esperjenza meħtieġa.
           </p>
           
-          <div class="progress-bar">
-            <div class="progress-step active"></div>
-            <div class="progress-step"></div>
-            <div class="progress-step"></div>
+          <!-- Mobile CTA Button - Moved Up -->
+          <div class="mobile-cta">
+            <button class="btn btn-primary btn-lg btn-block open-modal-btn mb-2">
+              <i class="fas fa-rocket btn-icon"></i>
+              Ibda Issa - Bla Ħlas!
+            </button>
+            <p style="color: var(--gray-600); font-size: 0.85rem;">
+              <i class="fas fa-shield-alt text-primary"></i>
+              100% Sigur
+            </p>
           </div>
-
-          <form id="applicationForm" novalidate>
-            <div class="field">
-              <label for="name" data-en="Full Name" data-mt="Isem Sħiħ">Full Name<span class="req">*</span></label>
-              <input id="name" name="name" type="text" placeholder="Your full name" required autocomplete="name" />
-            </div>
-
-            <div class="field">
-              <label for="phone" data-en="WhatsApp Number" data-mt="Numru WhatsApp">WhatsApp Number<span class="req">*</span></label>
-              <div class="phone-input-group">
-                <div class="country-code">
-                  <img src="https://flagcdn.com/w20/mt.png" alt="Malta Flag" width="20" height="14" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:2px;">
-                  +356
-                </div>
-                <input id="phone" name="phone" type="tel" class="phone-input" placeholder="e.g. 79231234" required inputmode="numeric" />
+          
+          <div class="hero-features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-euro-sign"></i>
+              </div>
+              <div class="feature-text">
+                <strong>Tħallas Regolari</strong>
+                <p>€20-€100 kuljum</p>
               </div>
             </div>
-
-            <div class="field">
-              <label for="age" data-en="Age" data-mt="Età">Age<span class="req">*</span></label>
-              <input id="age" name="age" type="text" placeholder="e.g. 25" required inputmode="numeric" pattern="[0-9]*" />
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="feature-text">
+                <strong>Sigħat Flessibbli</strong>
+                <p>2-6 sigħat kuljum</p>
+              </div>
             </div>
-
-            <div class="field check">
-              <input id="consent" name="consent" type="checkbox" required style="width: auto; margin-top: 4px;" checked />
-              <label for="consent" data-en="I accept the <a href='privacy.html'>Privacy Policy</a> and <a href='userterms.html'>Terms of Service</a>." data-mt="Naċċetta l-<a href='privacy.html'>Politika tal-Privatezza</a> u l-<a href='userterms.html'>Termini tas-Servizz</a>.">
-                I accept the <a href="privacy.html">Privacy Policy</a> and <a href="userterms.html">Terms of Service</a>.
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-home"></i>
+              </div>
+              <div class="feature-text">
+                <strong>Mid-Dar Kollha</strong>
+                <p>Bla commuting</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-calendar-check"></i>
+              </div>
+              <div class="feature-text">
+                <strong>Tibda Illum</strong>
+                <p>Bla intervisti</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hero Form - Now visible on mobile too -->
+        <div class="hero-form form-card fade-in delay-1">
+          <div class="form-header">
+            <h2 class="form-title">Applika Issa u Tibda Taħdem!</h2>
+            <p class="form-subtitle">Imla l-formola hawn taħt u aħna nikkuntattjawk fi żmien 30 minuta</p>
+          </div>
+          
+          <div class="form-step">
+            <div class="step-item active"></div>
+            <div class="step-item"></div>
+            <div class="step-item"></div>
+          </div>
+          
+          <form id="applicationForm">
+            <div class="form-group">
+              <label for="name" class="form-label">
+                Isem u Kujam <span class="required">*</span>
+              </label>
+              <input type="text" id="name" class="form-control" placeholder="e.g. Mario Borg" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">
+                Numru WhatsApp <span class="required">*</span>
+              </label>
+              <div class="phone-group">
+                <div class="country-code">
+                  <img src="https://flagcdn.com/w20/mt.png" alt="Malta Flag" width="20" height="14">
+                  <span>+356</span>
+                </div>
+                <input type="tel" id="phone" class="form-control phone-input" placeholder="e.g. 79231234" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="age" class="form-label">
+                Età <span class="required">*</span>
+              </label>
+              <input type="number" id="age" class="form-control" placeholder="e.g. 25" min="18" max="99" required>
+            </div>
+            
+            <div class="form-check">
+              <input type="checkbox" id="consent" class="form-check-input" required checked>
+              <label for="consent" class="form-check-label">
+                Naċċetta l-<a href="privacy.html" target="_blank">Politika tal-Privatezza</a> u 
+                l-<a href="terms.html" target="_blank">Termini tas-Servizz</a>.
               </label>
             </div>
-
-            <button type="submit" class="btn btn-primary btn-block pulse" data-en="🚀 EXPLORE OPPORTUNITIES" data-mt="🚀 ESPLORA OPPORTUNITAJIET">🚀 EXPLORE OPPORTUNITIES</button>
+            
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fas fa-paper-plane btn-icon"></i>
+              Ibgħat l-Applikazzjoni
+            </button>
             
             <div class="security-badge">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 12L11 14L15 10" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span data-en="Your information is secure and never shared with third parties" data-mt="L-informazzjoni tiegħek hija sigura u qatt ma taqsamha ma' terzi partijiet">Your information is secure and never shared with third parties</span>
+              <i class="fas fa-lock security-icon"></i>
+              <span>L-informazzjoni tiegħek hija 100% sigura</span>
             </div>
-            
-            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
           </form>
-        </aside>
-
-        <!-- Right: Additional content -->
-        <div class="hero-right-content fade-in delay-2">
-          <!-- User photos -->
-          <div class="hero-right-card">
-            <h3 data-en="🌟 Join Our Community of Remote Workers" data-mt="🌟 Ingħaqad Mal-Komunità Tagħna ta' Ħaddiema Remoti">🌟 Join Our Community of Remote Workers</h3>
-            <div class="user-photos">
-              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="User 1" class="user-photo">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="User 2" class="user-photo">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="User 3" class="user-photo">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="User 4" class="user-photo">
-              <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="User 5" class="user-photo">
-            </div>
-            <p class="muted small" data-en="Real people finding real opportunities from home!" data-mt="Nies reali qed isibu opportunitajiet reali mid-dar!">Real people finding real opportunities from home!</p>
-          </div>
-          
-          <!-- Benefits points -->
-          <div class="hero-right-card">
-            <h3 data-en="✅ Why Choose RemoteWorkMalta" data-mt="✅ Għaliex Tagħżel RemoteWorkMalta">✅ Why Choose RemoteWorkMalta</h3>
-            <ul class="hero-points">
-              <li data-en="💰 Flexible earning opportunities" data-mt="💰 Opportunitajiet ta' qligħ flessibbli">💰 Flexible earning opportunities</li>
-              <li data-en="⏰ Work whenever you want - 100% flexible" data-mt="⏰ Aħdem meta trid - 100% flessibbli">⏰ Work whenever you want - 100% flexible</li>
-              <li data-en="📱 Simple tasks - watch videos, complete surveys" data-mt="📱 Xogħol sempliċi - ara vidjows, kompli stħarriġ">📱 Simple tasks - watch videos, complete surveys</li>
-              <li data-en="💳 Regular payment opportunities" data-mt="💳 Opportunitajiet ta' ħlas regolari">💳 Regular payment opportunities</li>
-              <li data-en="🚫 No experience or special skills needed" data-mt="🚫 L-ebda esperjenza jew ħiliet speċjali meħtieġa">🚫 No experience or special skills needed</li>
-              <li data-en="🏠 Work from anywhere in Malta" data-mt="🏠 Aħdem minn kullimkien f'Malta">🏠 Work from anywhere in Malta</li>
-            </ul>
-          </div>
-          
-          <!-- Application Card -->
-          <div class="hero-right-card">
-            <h3 data-en="📝 Ready to Get Started?" data-mt="📝 Lest biex Tibda?">📝 Ready to Get Started?</h3>
-            <p class="muted" style="margin-bottom: 16px;" data-en="Complete your application today to explore available opportunities that match your schedule." data-mt="Kompli l-applikazzjoni tiegħek illum biex tesplora l-opportunitajiet disponibbli li jaqblu mas-skeda tiegħek.">Complete your application today to explore available opportunities that match your schedule.</p>
-            <a href="#" class="btn btn-primary btn-block pulse open-form-btn" data-en="📝 START APPLICATION" data-mt="📝 IBDA L-APPLIKAZZJONI">📝 START APPLICATION</a>
-          </div>
         </div>
       </div>
     </div>
-
-    <div class="hero-bg" role="img" aria-label="Remote work scene: person using laptop at home"></div>
   </section>
 
-  <!-- Success Modal -->
-  <div class="modal" id="successModal">
-    <div class="modal-content" aria-labelledby="modalTitle" role="dialog" aria-modal="true">
-      <button class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
-      <h3 class="modal-title" id="modalTitle" data-en="🎉 Success!" data-mt="🎉 Success!">🎉 Success!</h3>
-      <p class="modal-message" data-en="Your application has been submitted! Click OK to immediately contact our support team via WhatsApp and explore available opportunities." data-mt="L-applikazzjoni tiegħek ġiet imbagħtsa! Ikklikkja OK biex tikkuntattja lit-tim tas-support tagħna permezz ta' WhatsApp u tesplora l-opportunitajiet disponibbli.">
-        Your application has been submitted! Click OK to immediately contact our support team via WhatsApp and explore available opportunities.
-      </p>
-      <button class="modal-btn" id="modalOkBtn" data-en="OK" data-mt="OK">OK</button>
-    </div>
-  </div>
-
-  <!-- Age Warning Modal -->
-  <div class="modal age-warning-modal" id="ageWarningModal">
-    <div class="modal-content" aria-labelledby="ageWarningTitle" role="dialog" aria-modal="true">
-      <button class="modal-close" id="ageWarningCloseBtn" aria-label="Close">&times;</button>
-      <h3 class="modal-title" id="ageWarningTitle" data-en="Age Requirement" data-mt="Rekwiżit tal-Età">Age Requirement</h3>
-      <p class="modal-message" data-en="We're sorry, but our services are only available for individuals aged 18 and over. You can apply when you turn 18." data-mt="Jiddispjaċina, is-servizzi tagħna huma disponibbli biss għal individwi ta' 18-il sena jew aktar. Tista' tapplika meta tkun 18.">
-        We're sorry, but our services are only available for individuals aged 18 and over. You can apply when you turn 18.
-      </p>
-      <button class="modal-btn" id="ageWarningOkBtn" data-en="Understood" data-mt="Fehimt">Understood</button>
-    </div>
-  </div>
-
-  <!-- Form Modal -->
-  <div class="modal" id="formModal">
-    <div class="modal-content" style="max-width: 460px;" aria-labelledby="modalFormTitle" role="dialog" aria-modal="true">
-      <button class="modal-close" id="formModalCloseBtn" aria-label="Close">&times;</button>
-      <h2 class="form-title" id="modalFormTitle" data-en="🚀 Start Exploring Opportunities" data-mt="🚀 Ibda Esplorar Opportunitajiet">🚀 Start Exploring Opportunities</h2>
-      <p class="form-note" data-en="Complete this quick form to explore available remote work opportunities." data-mt="Kompli dan il-formola malajr biex tesplora l-opportunitajiet disponibbli ta' xogħol remot.">
-        Complete this quick form to explore available remote work opportunities.
-      </p>
-      
-      <div class="progress-bar">
-        <div class="progress-step active"></div>
-        <div class="progress-step"></div>
-        <div class="progress-step"></div>
-      </div>
-
-      <form id="modalApplicationForm" novalidate>
-        <div class="field">
-          <label for="modal-name" data-en="Full Name" data-mt="Isem Sħiħ">Full Name<span class="req">*</span></label>
-          <input id="modal-name" name="name" type="text" placeholder="Your full name" required autocomplete="name" />
-        </div>
-
-        <div class="field">
-          <label for="modal-phone" data-en="WhatsApp Number" data-mt="Numru WhatsApp">WhatsApp Number<span class="req">*</span></label>
-          <div class="phone-input-group">
-            <div class="country-code">
-              <img src="https://flagcdn.com/w20/mt.png" alt="Malta Flag" width="20" height="14" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:2px;">
-              +356
-            </div>
-            <input id="modal-phone" name="phone" type="tel" class="phone-input" placeholder="e.g. 79231234" required inputmode="numeric" />
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="modal-age" data-en="Age" data-mt="Età">Age<span class="req">*</span></label>
-          <input id="modal-age" name="age" type="text" placeholder="e.g. 25" required inputmode="numeric" pattern="[0-9]*" />
-        </div>
-
-        <div class="field check">
-          <input id="modal-consent" name="consent" type="checkbox" required style="width: auto; margin-top: 4px;" checked />
-          <label for="modal-consent" data-en="I accept the <a href='privacy.html'>Privacy Policy</a> and <a href='userterms.html'>Terms of Service</a>." data-mt="Naċċetta l-<a href='privacy.html'>Politika tal-Privatezza</a> u l-<a href='userterms.html'>Termini tas-Servizz</a>.">
-            I accept the <a href="privacy.html">Privacy Policy</a> and <a href="userterms.html">Terms of Service</a>.
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block pulse" data-en="🚀 EXPLORE OPPORTUNITIES" data-mt="🚀 ESPLORA OPPORTUNITAJIET">🚀 EXPLORE OPPORTUNITIES</button>
-        
-        <div class="security-badge">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 12L11 14L15 10" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span data-en="Your information is secure and never shared with third parties" data-mt="L-informazzjoni tiegħek hija sigura u qatt ma taqsamha ma' terzi partijiet">Your information is secure and never shared with third parties</span>
-        </div>
-        
-        <p id="modalFormStatus" class="form-status" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-
-  <!-- Hiring (Part-time & Full-time) -->
-  <section id="roles" class="section">
+  <!-- Companies Section -->
+  <section class="section companies-section">
     <div class="container">
       <div class="section-header fade-in">
-        <div class="malta-flag">
-          <img src="https://flagcdn.com/w20/mt.png" alt="Malta Flag">
-          <span data-en="🌟 FLEXIBLE WORK OPPORTUNITIES IN MALTA" data-mt="🌟 OPPORTUNITAJET TA' XOGĦOL FLESSIBBILI FI MALTA">🌟 FLEXIBLE WORK OPPORTUNITIES IN MALTA</span>
-        </div>
-        <h2 data-en="Choose Your Flexible Work Path" data-mt="Agħżel It-Triq Tiegħek ta' Xogħol Flessibbli">Choose Your Flexible Work Path</h2>
-        <p class="muted" data-en="Explore opportunities that fit your schedule and lifestyle. Start small and find what works for you!" data-mt="Esplora opportunitajiet li jaqblu mas-skeda u l-istil tal-ħajja tiegħek. Ibda żgħar u sib x'jaħdem għalik!">Explore opportunities that fit your schedule and lifestyle. Start small and find what works for you!</p>
-      </div>
-
-      <div class="cards two-col">
-        <article class="card fade-in">
-          <div class="card-media media-pt"></div>
-          <div class="card-body">
-            <div class="earnings-badge">🔥 Flexible Hours</div>
-            <h3 data-en="Part-Time Remote Work" data-mt="Xogħol Remot Part-Time">Part-Time Remote Work</h3>
-            <ul class="list">
-              <li data-en="<strong>Perfect for:</strong> Students, side hustlers, busy parents" data-mt="<strong>Perfett għal:</strong> Studenti, side hustlers, ġenituri busy"><strong>Perfect for:</strong> Students, side hustlers, busy parents</li>
-              <li data-en="<strong>Time commitment:</strong> Flexible 1–3 hours/day" data-mt="<strong>Impenj ta' żmien:</strong> Flessibbli 1–3 sigħat/jum"><strong>Time commitment:</strong> Flexible 1–3 hours/day</li>
-              <li data-en="<strong>Payment:</strong> Regular payment opportunities" data-mt="<strong>Ħlas:</strong> Opportunitajiet ta' ħlas regolari"><strong>Payment:</strong> Regular payment opportunities</li>
-              <li data-en="<strong>All you need:</strong> Smartphone + internet" data-mt="<strong>Kollox li għandek bżonn:</strong> Smartphone + internet"><strong>All you need:</strong> Smartphone + internet</li>
-              <li data-en="<strong>Tasks:</strong> Watching videos, simple surveys" data-mt="<strong>Xogħol:</strong> Tfittex vidjows, stħarriġ sempliċi"><strong>Tasks:</strong> Watching videos, simple surveys</li>
-            </ul>
-            <a href="#" class="btn btn-primary open-form-btn" style="margin-top: 12px;" data-en="🎯 EXPLORE PART-TIME" data-mt="🎯 ESPLORA PART-TIME">🎯 EXPLORE PART-TIME</a>
-          </div>
-        </article>
-
-        <article class="card fade-in delay-1">
-          <div class="card-media media-ft"></div>
-          <div class="card-body">
-            <div class="earnings-badge">💎 More Opportunities</div>
-            <h3 data-en="Full-Time Remote Work" data-mt="Xogħol Remot Full-Time">Full-Time Remote Work</h3>
-            <ul class="list">
-              <li data-en="<strong>Perfect for:</strong> Career changers, serious earners" data-mt="<strong>Perfett għal:</strong> Nies li qed jibdlu karriera, min irid jaqla' serjament"><strong>Perfect for:</strong> Career changers, serious earners</li>
-              <li data-en="<strong>Time commitment:</strong> 3–6 flexible hours/day" data-mt="<strong>Impenj ta' żmien:</strong> 3–6 sigħat flessibbli/jum"><strong>Time commitment:</strong> 3–6 flexible hours/day</li>
-              <li data-en="<strong>Payment:</strong> Regular payment opportunities" data-mt="<strong>Ħlas:</strong> Opportunitajiet ta' ħlas regolari"><strong>Payment:</strong> Regular payment opportunities</li>
-              <li data-en="<strong>All you need:</strong> Smartphone (PC optional)" data-mt="<strong>Kollox li għandek bżonn:</strong> Smartphone (PC opzjonali)"><strong>All you need:</strong> Smartphone (PC optional)</li>
-              <li data-en="<strong>Tasks:</strong> Variety of simple online activities" data-mt="<strong>Xogħol:</strong> Varjetà ta' attivitajiet onlajn sempliċi"><strong>Tasks:</strong> Variety of simple online activities</li>
-            </ul>
-            <a href="#" class="btn btn-primary open-form-btn" style="margin-top: 12px;" data-en="💼 EXPLORE FULL-TIME" data-mt="💼 ESPLORA FULL-TIME">💼 EXPLORE FULL-TIME</a>
-          </div>
-        </article>
-      </div>
-      
-      <!-- Earnings Disclaimer -->
-      <div class="earnings-disclaimer fade-in">
-        <p data-en="Earnings vary based on individual effort, task availability, and other factors. We do not guarantee any specific income level. Results may vary." data-mt="Il-ħlasijiet jvarjaw skont l-isforz individwali, id-disponibbiltà tax-xogħol, u fatturi oħra. Aħna ma ngarrfux livell ta' dħul speċifiku. Ir-riżultati jistgħu jvarjaw.">
-          Earnings vary based on individual effort, task availability, and other factors. We do not guarantee any specific income level. Results may vary.
+        <h2 class="section-title">Naħdmu mal-Aqwa Kumpaniji</h2>
+        <p class="section-subtitle">
+          Opportunitajiet ma' kumpaniji apprezzati f'Malta
         </p>
       </div>
+      
+      <div class="companies-grid">
+        <div class="company-card fade-in">
+          <div class="company-logo">B</div>
+          <h3 class="company-name">Betsson</h3>
+          <p class="company-jobs">15 pożizzjoni</p>
+        </div>
+        
+        <div class="company-card fade-in delay-1">
+          <div class="company-logo">T</div>
+          <h3 class="company-name">Tipico</h3>
+          <p class="company-jobs">8 pożizzjonijiet</p>
+        </div>
+        
+        <div class="company-card fade-in delay-2">
+          <div class="company-logo">C</div>
+          <h3 class="company-name">Casumo</h3>
+          <p class="company-jobs">12 pożizzjoni</p>
+        </div>
+        
+        <div class="company-card fade-in delay-3">
+          <div class="company-logo">L</div>
+          <h3 class="company-name">LeoVegas</h3>
+          <p class="company-jobs">10 opportunitajiet</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Flexible Work Bonus -->
-  <section class="section alt">
+  <!-- Jobs Section -->
+  <section class="section jobs-section" id="opportunitajiet">
     <div class="container">
       <div class="section-header fade-in">
-        <h2 data-en="💰 Additional Rewards for Active Participants" data-mt="💰 Premjijiet Addizzjonali Għal Partecipanti Attivi">💰 Additional Rewards for Active Participants</h2>
-        <p class="muted" data-en="Stay active and discover additional earning opportunities beyond regular task payments!" data-mt="Żomm attiv u skopri opportunitajiet ta' qligħ addizzjonali lil hinn mill-ħlasijiet regolari tax-xogħol!">Stay active and discover additional earning opportunities beyond regular task payments!</p>
+        <h2 class="section-title">Opportunitajiet ta' Xogħol</h2>
+        <p class="section-subtitle">
+          Agħżel opportunitajiet li jaqblu miegħek
+        </p>
       </div>
       
-      <div class="cards three-col">
-        <div class="card bonus fade-in">
-          <div class="bonus-icon" aria-hidden="true">🎁</div>
-          <h3 data-en="5 Active Days" data-mt="5 Jum Attivi">5 Active Days</h3>
-          <p data-en="Complete tasks for just 5 days this month to explore additional opportunities!" data-mt="Kompli xogħol għal 5 jum biss dan ix-xahar biex tesplora opportunitajiet addizzjonali!">Complete tasks for just 5 days this month to explore additional opportunities!</p>
+      <div class="jobs-grid">
+        <div class="job-card fade-in">
+          <div class="job-badge">POPOLARI</div>
+          <h3 class="job-title">Support Online</h3>
+          <div class="job-salary">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Sa €100 kuljum</span>
+          </div>
+          <div class="job-features">
+            <div class="job-feature">
+              <i class="fas fa-clock"></i>
+              <span>2-4 sigħat flessibbli</span>
+            </div>
+            <div class="job-feature">
+              <i class="fas fa-home"></i>
+              <span>Mid-dar kollha</span>
+            </div>
+            <div class="job-feature">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Bla esperjenza</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block open-modal-btn">
+            Applika Issa
+          </button>
         </div>
-        <div class="card bonus fade-in delay-1">
-          <div class="bonus-icon" aria-hidden="true">🏆</div>
-          <h3 data-en="15 Active Days" data-mt="15 Jum Attivi">15 Active Days</h3>
-          <p data-en="Maintain consistent activity for 15 days to qualify for increased opportunities!" data-mt="Żomm attività kostanti għal 15-il jum biex tikkwalifika għal opportunitajiet miżjuda!">Maintain consistent activity for 15 days to qualify for increased opportunities!</p>
+        
+        <div class="job-card fade-in delay-1">
+          <div class="job-badge">FLESSIBBLI</div>
+          <h3 class="job-title">Data Entry</h3>
+          <div class="job-salary">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>€20-€60 kuljum</span>
+          </div>
+          <div class="job-features">
+            <div class="job-feature">
+              <i class="fas fa-clock"></i>
+              <span>Meta trid</span>
+            </div>
+            <div class="job-feature">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Smartphone biss</span>
+            </div>
+            <div class="job-feature">
+              <i class="fas fa-bolt"></i>
+              <span>Pagamenti ta' kuljum</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block open-modal-btn">
+            Applika Issa
+          </button>
         </div>
-        <div class="card bonus fade-in delay-2">
-          <div class="bonus-icon" aria-hidden="true">⭐</div>
-          <h3 data-en="30 Active Days" data-mt="30 Jum Attivi">30 Active Days</h3>
-          <p data-en="Stay active for 30 days to discover our highest level of additional opportunities!" data-mt="Żomm attiv għal 30 jum biex issib l-ogħla livell ta' opportunitajiet addizzjonali!">Stay active for 30 days to discover our highest level of additional opportunities!</p>
+        
+        <div class="job-card fade-in delay-2">
+          <div class="job-badge">BONUS €50</div>
+          <h3 class="job-title">Verifikazzjoni Kontenut</h3>
+          <div class="job-salary">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>€80-€120 kuljum</span>
+          </div>
+          <div class="job-features">
+            <div class="job-feature">
+              <i class="fas fa-clock"></i>
+              <span>3-6 sigħat kuljum</span>
+            </div>
+            <div class="job-feature">
+              <i class="fas fa-laptop"></i>
+              <span>Kompjuter jew tablet</span>
+            </div>
+            <div class="job-feature">
+              <i class="fas fa-gift"></i>
+              <span>Bonus €50 għall-bidu</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block open-modal-btn">
+            Applika Issa
+          </button>
         </div>
       </div>
-      <p class="muted" style="text-align: center; margin-top: 16px;" data-en="🌟 Additional opportunities depend on task availability and quality review. Terms apply." data-mt="🌟 Opportunitajiet addizzjonali jiddependu fuq id-disponibbiltà tax-xogħol u reviżjoni tal-kwalità. Japplikaw termini.">🌟 Additional opportunities depend on task availability and quality review. Terms apply.</p>
     </div>
   </section>
 
-  <!-- Job Requirements -->
-  <section class="section" aria-labelledby="req-title">
+  <!-- Stats Section -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-grid fade-in">
+        <div class="stat-item">
+          <div class="stat-number">2,500+</div>
+          <div class="stat-label">Maltin Jaħdmu</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">€450K+</div>
+          <div class="stat-label">Pagamenti</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Sodisfazzjon</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Appoġġ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section how-it-works" id="kif">
     <div class="container">
       <div class="section-header fade-in">
-        <h2 id="req-title" data-en="✅ Everything You Need to Get Started" data-mt="✅ Kollox li Għandek Bżonn biex Tibda">✅ Everything You Need to Get Started</h2>
-        <p class="muted" data-en="Simple requirements to begin exploring remote work opportunities." data-mt="Rekwiżiti sempliċi biex tibda tesplora opportunitajiet ta' xogħol remot.">Simple requirements to begin exploring remote work opportunities.</p>
+        <h2 class="section-title">Kif Taħdem?</h2>
+        <p class="section-subtitle">
+          3 passi sempliċi biex tibda taħdem
+        </p>
       </div>
       
-      <div class="requirements">
-        <div class="req-item fade-in">
-          <div class="req-icon">📱</div>
-          <div>
-            <h4 data-en="Smartphone" data-mt="Smartphone">Smartphone</h4>
-            <p data-en="Android or iOS with stable internet." data-mt="Android jew iOS b'internet stabbli.">Android or iOS with stable internet.</p>
-          </div>
+      <div class="steps-grid">
+        <div class="step-card fade-in">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Applika Online</h3>
+          <p class="step-description">
+            Imla l-formola sempliċi. Hu biss 30 sekonda!
+          </p>
         </div>
-        <div class="req-item fade-in delay-1">
-          <div class="req-icon">💸</div>
-          <div>
-            <h4 data-en="Follow Simple Steps" data-mt="Segwi Passi Sempliċi">Follow Simple Steps</h4>
-            <p data-en="Complete tasks and submit proof." data-mt="Kompli xogħol u ibgħat prova.">Complete tasks and submit proof.</p>
-          </div>
+        
+        <div class="step-card fade-in delay-1">
+          <div class="step-number">2</div>
+          <h3 class="step-title">WhatsApp</h3>
+          <p class="step-description">
+            Nikkuntattjawk fuq WhatsApp fi 30 minuta.
+          </p>
         </div>
-        <div class="req-item fade-in delay-1">
-          <div class="req-icon">🎯</div>
-          <div>
-            <h4 data-en="Age 18+" data-mt="Età 18+">Age 18+</h4>
-            <p data-en="We verify age for eligibility." data-mt="Nivverifikaw l-età għall-eliġibbiltà.">We verify age for eligibility.</p>
-          </div>
-        </div>
-        <div class="req-item fade-in delay-2">
-          <div class="req-icon">🤝</div>
-          <div>
-            <h4 data-en="All Welcome" data-mt="Lkoll Merħba">All Welcome</h4>
-            <p data-en="Inclusive opportunities for everyone." data-mt="Opportunitajiet inklużivi għal kulħadd.">Inclusive opportunities for everyone.</p>
-          </div>
-        </div>
-        <div class="req-item fade-in delay-2">
-          <div class="req-icon">⚡</div>
-          <div>
-            <h4 data-en="Basic Skills" data-mt="Ħiliet Bażiċi">Basic Skills</h4>
-            <p data-en="Reading instructions and simple tasks." data-mt="Qari ta' struzzjonijiet u xogħol sempliċi.">Reading instructions and simple tasks.</p>
-          </div>
+        
+        <div class="step-card fade-in delay-2">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Ibda u Ħallas</h3>
+          <p class="step-description">
+            Ibda taħdem u tħallas regolari.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Work From Home Benefits -->
-  <section id="benefits" class="section alt">
-    <div class="container">
-      <div class="benefits-grid">
-        <div class="benefits-media fade-in"></div>
-        <div class="benefits-copy fade-in delay-1">
-          <h2 data-en="💼 Work From Anywhere - Your Home, Cafe, or Garden!" data-mt="💼 Aħdem Minn Kullimkien - Id-Dar Tiegħek, Cafe, jew Ġnien!">💼 Work From Anywhere - Your Home, Cafe, or Garden!</h2>
-          <ul class="stats">
-            <li><strong>15,000+</strong> <span data-en="Community Members" data-mt="Membri tal-Komunità">Community Members</span></li>
-            <li><strong>50,000+</strong> <span data-en="Tasks Completed" data-mt="Xogħlijiet Imlestin">Tasks Completed</span></li>
-            <li><strong>200+</strong> <span data-en="Support Team" data-mt="Tim tas-Support">Support Team</span></li>
-            <li><strong>96%</strong> <span data-en="Satisfaction Rate" data-mt="Rate ta' Sodisfazzjon">Satisfaction Rate</span></li>
-          </ul>
-          <p class="muted" data-en="Join our growing community of Maltese residents discovering flexible work opportunities!" data-mt="Ingħaqad mal-komunità tikber tagħna ta' residenti Maltin li qed jiskopru opportunitajiet ta' xogħol flessibbli!">Join our growing community of Maltese residents discovering flexible work opportunities!</p>
-        </div>
+      
+      <div class="text-center mt-4">
+        <button class="btn btn-primary btn-lg open-modal-btn">
+          <i class="fas fa-play-circle btn-icon"></i>
+          Ibda Issa
+        </button>
       </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section class="section">
+  <section class="section testimonials-section" id="testimonials">
     <div class="container">
       <div class="section-header fade-in">
-        <h2 data-en="🎉 Real People, Real Experiences" data-mt="🎉 Nies Real, Esperjenzi Real">🎉 Real People, Real Experiences</h2>
-        <p class="muted" data-en="Hear from Maltese residents who discovered flexible work opportunities with our platform." data-mt="Isma' minn residenti Maltin li skoprew opportunitajiet ta' xogħol flessibbli mal-pjattaforma tagħna.">Hear from Maltese residents who discovered flexible work opportunities with our platform.</p>
+        <h2 class="section-title">X'Jgħidu Maltin Oħra</h2>
       </div>
       
-      <div class="cards three-col">
-        <blockquote class="testimonial fade-in">
-          <div class="avatar">M</div>
-          <p data-en="&quot;I was skeptical at first, but the tasks are genuinely simple. Found great flexibility for my schedule as a student!&quot;" data-mt="&quot;Kont skeptiku fl-ewwel, imma x-xogħol huwa verament sempliċi. Sibt flessibilità kbira għas-skeda tiegħi bħala student!&quot;">"I was skeptical at first, but the tasks are genuinely simple. Found great flexibility for my schedule as a student!"</p>
-          <footer>— <span data-en="Maria, Valletta" data-mt="Maria, Valletta">Maria, Valletta</span></footer>
-        </blockquote>
-        <blockquote class="testimonial fade-in delay-1">
-          <div class="avatar">G</div>
-          <p data-en="&quot;As a student, this has been perfect for my schedule. I work when I want and earn some extra money. Very convenient!&quot;" data-mt="&quot;Bħala student, dan kien perfett għas-skeda tiegħi. Naħdem meta rrid u naqla' xi flus addizzjonali. Ta' konvenjenza kbira!&quot;">"As a student, this has been perfect for my schedule. I work when I want and earn some extra money. Very convenient!"</p>
-          <footer>— <span data-en="Giovanni, Sliema" data-mt="Giovanni, Sliema">Giovanni, Sliema</span></footer>
-        </blockquote>
-        <blockquote class="testimonial fade-in delay-2">
-          <div class="avatar">C</div>
-          <p data-en="&quot;The flexibility lets me care for my kids while exploring work opportunities from home. Very helpful platform!&quot;" data-mt="&quot;Il-flessibilità tħallini nieħu ħsieb it-tfal tiegħi waqt li nesplora opportunitajiet ta' xogħol mid-dar. Pjattaforma ta' għajnuna kbira!&quot;">"The flexibility lets me care for my kids while exploring work opportunities from home. Very helpful platform!"</p>
-          <footer>— <span data-en="Carmel, Birkirkara" data-mt="Carmel, Birkirkara">Carmel, Birkirkara</span></footer>
-        </blockquote>
+      <div class="testimonials-slider">
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-content">
+            "Kont student u ma kontx naf kif naqla' flus. Illum naħdem 3 sigħat u naqla' €80-€100. L-aħjar ħaġa hija li naħdem meta rrid!"
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div class="author-info">
+              <h4>Maria Tabone</h4>
+              <p>Student - Malta University</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Opportunity CTA -->
-  <section class="section cta">
-    <div class="container cta-inner fade-in">
-      <div>
-        <div class="opportunity-badge" data-en="🌟 OPPORTUNITIES AVAILABLE NOW!" data-mt="🌟 OPPORTUNITAJET DISPONIBBLI IMMA!">🌟 OPPORTUNITIES AVAILABLE NOW!</div>
-        <h2 data-en="Ready to Explore Flexible Work Opportunities?" data-mt="Lest biex Tesplora Opportunitajiet ta' Xogħol Flessibbli?">Ready to Explore Flexible Work Opportunities?</h2>
-        <p class="muted" data-en="New opportunities are regularly added to our platform. Submit your application today to discover what's available for your schedule." data-mt="Opportunitajiet ġodda qed jiżdiedu regolarment mal-pjattaforma tagħna. Ibgħat l-applikazzjoni tiegħek illum biex issib x'hemm disponibbli għas-skeda tiegħek.">New opportunities are regularly added to our platform. Submit your application today to discover what's available for your schedule.</p>
-      </div>
-      <a class="btn btn-primary btn-lg pulse open-form-btn" href="#" data-en="🚀 EXPLORE OPPORTUNITIES" data-mt="🚀 ESPLORA OPPORTUNITAJIET">🚀 EXPLORE OPPORTUNITIES</a>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="section alt">
+  <section class="section faq-section" id="faq">
     <div class="container">
       <div class="section-header fade-in">
-        <h2 data-en="❓ Frequently Asked Questions" data-mt="❓ Mistoqsijiet Frekwenti">❓ Frequently Asked Questions</h2>
-        <p class="muted" data-en="Everything you need to know before exploring our opportunities." data-mt="Kollox li għandek bżonn tkun taf qabel ma tesplora l-opportunitajiet tagħna.">Everything you need to know before exploring our opportunities.</p>
+        <h2 class="section-title">Mistoqsijiet Frekwenti</h2>
       </div>
       
-      <details class="faq fade-in">
-        <summary data-en="Is there any fee to apply or join?" data-mt="Hemm xi ħlas biex tapplika jew tingħaqad?">Is there any fee to apply or join?</summary>
-        <div data-en="<strong>Absolutely NOT!</strong> We never charge application or registration fees. Our platform is 100% free to join and use. You only explore opportunities - you never pay." data-mt="<strong>Assolutament LE!</strong> Aħna qatt ma nħaqslu ħlasijiet ta' applikazzjoni jew reġistrazzjoni. Il-pjattaforma tagħna hija 100% b'xejn biex tingħaqad u tużaha. Inti biss tesplora opportunitajiet - inti qatt ma tħallas."><strong>Absolutely NOT!</strong> We never charge application or registration fees. Our platform is 100% free to join and use. You only explore opportunities - you never pay.</div>
-      </details>
-      <details class="faq fade-in">
-        <summary data-en="How quickly will I get paid?" data-mt="Kif malajr se nħaħlas?">How quickly will I get paid?</summary>
-        <div data-en="<strong>Most participants receive payment within 24-48 hours</strong> of completing tasks. Payments are processed regularly after tasks pass our quality checks." data-mt="<strong>Il-maġġoranza tal-partecipanti jirċievu ħlas fi żmien 24-48 siegħa</strong> wara li jkomplu x-xogħol. Il-ħlasijiet jiġu pproċessati regolarment wara li x-xogħol jgħaddi mill-kontrolli tal-kwalità tagħna."><strong>Most participants receive payment within 24-48 hours</strong> of completing tasks. Payments are processed regularly after tasks pass our quality checks.</div>
-      </details>
-      <details class="faq fade-in">
-        <summary data-en="What equipment do I really need?" data-mt="X'għodda verament għandi bżonn?">What equipment do I really need?</summary>
-        <div data-en="<strong>Just a smartphone and internet connection!</strong> That's it. No fancy equipment needed. Most tasks can be completed right from your phone." data-mt="<strong>Biss smartphone u konnessjoni tal-internet!</strong> Dik hija. L-ebda għodda fancy meħtieġa. Il-maġġoranza tax-xogħol jista' jitlesta direttament mill-mowbajl tiegħek."><strong>Just a smartphone and internet connection!</strong> That's it. No fancy equipment needed. Most tasks can be completed right from your phone.</div>
-      </details>
-      <details class="faq fade-in">
-        <summary data-en="How will you contact me after I apply?" data-mt="Kif se tikkuntattjani wara li napplika?">How will you contact me after I apply?</summary>
-        <div data-en="<strong>We'll contact you via WhatsApp within hours</strong> with information about available opportunities and how to get started." data-mt="<strong>Aħna nikkuntattjawk permezz ta' WhatsApp fi żmien sigħat</strong> b'informazzjoni dwar l-opportunitajiet disponibbli u kif tibda."><strong>We'll contact you via WhatsApp within hours</strong> with information about available opportunities and how to get started.</div>
-      </details>
-      <details class="faq fade-in">
-        <summary data-en="What kind of tasks will I be doing?" data-mt="X'tip ta' xogħol se nagħmel?">What kind of tasks will I be doing?</summary>
-        <div data-en="<strong>Simple online activities</strong> like watching videos, completing surveys, testing apps, and other digital tasks that can be done from anywhere in Malta." data-mt="<strong>Attivitajiet onlajn sempliċi</strong> bħal tara vidjows, tkompli stħarriġ, ittestja apps, u xogħolijiet oħra diġitali li jistgħu jsiru minn kullimkien f'Malta."><strong>Simple online activities</strong> like watching videos, completing surveys, testing apps, and other digital tasks that can be done from anywhere in Malta.</div>
-      </details>
+      <div class="faq-grid">
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>Hemm xi ħlas biex napplika?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p><strong>Assolutament LE!</strong> L-applikazzjoni hija 100% b'xejn. Ma taħdimx l-ebda ħlas.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>Kif malajr se nħallas?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p><strong>Fi żmien 24-48 siegħa</strong> wara li tlestu x-xogħol.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <div class="faq-question">
+            <span>X'għodda għandi bżonn?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">
+            <p><strong>Biss smartphone u internet!</strong> Dik hija.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <button class="btn btn-primary btn-lg open-modal-btn">
+          <i class="fas fa-question-circle btn-icon"></i>
+          Għandek Mistoqsija? Applika Issa!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section" id="applika">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="cta-title">Lest biex Tibda?</h2>
+        <p class="cta-subtitle">
+          Opportunitajiet ġodda kuljum. Applika illum!
+        </p>
+        <button class="btn btn-primary btn-lg open-modal-btn mt-3">
+          <i class="fas fa-rocket btn-icon"></i>
+          Applika Issa - Opportunitajiet Limitati!
+        </button>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <a class="brand" href="#top">RemoteWorkMalta</a>
-        <p class="muted small" data-en="Real opportunities. Zero fees. Explore flexible work today." data-mt="Opportunitajiet reali. Zero ħlas. Esplora xogħol flessibbli illum.">Real opportunities. Zero fees. Explore flexible work today.</p>
-      </div>
-      <nav class="footer-links">
-        <a id="privacy" href="privacy.html" rel="nofollow" data-en="Privacy Policy" data-mt="Politika tal-Privatezza">Privacy Policy</a>
-        <a id="terms" href="userterms.html" rel="nofollow" data-en="Terms of Service" data-mt="Termini tas-Servizz">Terms of Service</a>
-      </nav>
-    </div>
     <div class="container">
-      <p class="muted small" data-en="© 2024 RemoteWorkMalta. All rights reserved. Individual results may vary based on effort, task availability, and other factors. We do not guarantee specific earnings." data-mt="© 2024 RemoteWorkMalta. Id-drittijiet kollha riżervati. Ir-riżultati individwali jistgħu jvarjaw skont l-isforz, id-disponibbiltà tax-xogħol, u fatturi oħra. Aħna ma ngarrfux ħlasijiet speċifiċi.">© 2024 RemoteWorkMalta. All rights reserved. Individual results may vary based on effort, task availability, and other factors. We do not guarantee specific earnings.</p>
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="footer-logo">XogħolRemot.mt</a>
+          <p class="footer-description">
+            Ngħinu lil Maltin issibu opportunitajiet ta' xogħol remot.
+            100% b'xejn, 100% sigur.
+          </p>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Links</h3>
+          <ul>
+            <li><a href="#opportunitajiet">Opportunitajiet</a></li>
+            <li><a href="#kif">Kif Taħdem</a></li>
+            <li><a href="#testimonials">Testimonjali</a></li>
+            <li><a href="#faq">Mistoqsijiet</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="privacy.html">Privatezza</a></li>
+            <li><a href="terms.html">Termini</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2024 XogħolRemot.mt. Id-drittijiet kollha riżervati.</p>
+      </div>
     </div>
   </footer>
 
+  <!-- Modal Form -->
+  <div class="modal" id="modalForm">
+    <div class="modal-content">
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+      <div class="form-header">
+        <h2 class="form-title">Applika Issa u Tibda Taħdem!</h2>
+        <p class="form-subtitle">Imla l-formola hawn taħt u aħna nikkuntattjawk fi żmien 30 minuta</p>
+      </div>
+      
+      <div class="form-step">
+        <div class="step-item active"></div>
+        <div class="step-item"></div>
+        <div class="step-item"></div>
+      </div>
+      
+      <form id="modalApplicationForm">
+        <div class="form-group">
+          <label for="modal-name" class="form-label">
+            Isem u Kujam <span class="required">*</span>
+          </label>
+          <input type="text" id="modal-name" class="form-control" placeholder="e.g. Mario Borg" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="modal-phone" class="form-label">
+            Numru WhatsApp <span class="required">*</span>
+          </label>
+          <div class="phone-group">
+            <div class="country-code">
+              <img src="https://flagcdn.com/w20/mt.png" alt="Malta Flag" width="20" height="14">
+              <span>+356</span>
+            </div>
+            <input type="tel" id="modal-phone" class="form-control phone-input" placeholder="e.g. 79231234" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="modal-age" class="form-label">
+            Età <span class="required">*</span>
+          </label>
+          <input type="number" id="modal-age" class="form-control" placeholder="e.g. 25" min="18" max="99" required>
+        </div>
+        
+        <div class="form-check">
+          <input type="checkbox" id="modal-consent" class="form-check-input" required checked>
+          <label for="modal-consent" class="form-check-label">
+            Naċċetta l-<a href="privacy.html" target="_blank">Politika tal-Privatezza</a> u 
+            l-<a href="terms.html" target="_blank">Termini tas-Servizz</a>.
+          </label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fas fa-paper-plane btn-icon"></i>
+          Ibgħat l-Applikazzjoni
+        </button>
+        
+        <div class="security-badge">
+          <i class="fas fa-lock security-icon"></i>
+          <span>L-informazzjoni tiegħek hija 100% sigura</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <button class="modal-close" id="successCloseBtn">&times;</button>
+      <h3 class="modal-title">🎉 Prosit! Applika b'suċċess!</h3>
+      <p class="modal-message">
+        L-applikazzjoni tiegħek ġiet imbagħtsa! Issa se nikkuntattjawk fuq WhatsApp fi żmien 30 minuta.
+      </p>
+      <button class="btn btn-primary btn-block" id="successOkBtn">
+        <i class="fas fa-whatsapp btn-icon"></i>
+        OK - Mur għall-WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Age Warning Modal -->
+  <div class="modal age-warning-modal" id="ageWarningModal">
+    <div class="modal-content">
+      <button class="modal-close" id="ageWarningCloseBtn">&times;</button>
+      <h3 class="modal-title">⚠️ Rekwiżit tal-Età</h3>
+      <p class="modal-message">
+        Jiddispjaċina, is-servizzi tagħna huma disponibbli biss għal individwi ta' 18-il sena jew aktar.
+      </p>
+      <button class="btn btn-primary btn-block" id="ageWarningOkBtn">
+        Fehimt
+      </button>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Language detection and switching
-      const userLanguage = navigator.language || navigator.userLanguage;
-      const isMaltese = userLanguage.startsWith('mt');
-      
-      // Set language based on detection
-      setLanguage(isMaltese ? 'mt' : 'en');
-      
-      function setLanguage(lang) {
-        // Update all elements with data attributes
-        document.querySelectorAll('[data-en]').forEach(element => {
-          if (lang === 'mt' && element.getAttribute('data-mt')) {
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-              element.placeholder = element.getAttribute('data-mt');
-            } else {
-              element.innerHTML = element.getAttribute('data-mt');
-            }
-          } else {
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-              element.placeholder = element.getAttribute('data-en');
-            } else {
-              element.innerHTML = element.getAttribute('data-en');
-            }
-          }
-        });
-        
-        // Update page title and meta description
-        if (lang === 'mt') {
-          document.title = "Opportunitajiet ta' Xogħol Remot f'Malta | Aħdem Mid-Dar";
-          document.querySelector('meta[name="description"]').setAttribute('content', "Esplora opportunitajiet ta' xogħol remot f'Malta. Aħdem mid-dar b'sigħat flessibbli. Ebda ħlas ta' applikazzjoni. Termini ċari u privatezza.");
-        } else {
-          document.title = "Remote Work Opportunities in Malta | Work From Home";
-          document.querySelector('meta[name="description"]').setAttribute('content', "Explore remote work opportunities in Malta. Work from home with flexible hours. No registration fees. Clear terms and privacy first.");
-        }
-      }
-
-      const form = document.getElementById('applicationForm');
-      const modalForm = document.getElementById('modalApplicationForm');
-      const formStatus = document.getElementById('formStatus');
-      const modalFormStatus = document.getElementById('modalFormStatus');
-      const successModal = document.getElementById('successModal');
-      const ageWarningModal = document.getElementById('ageWarningModal');
-      const formModal = document.getElementById('formModal');
-      const modalOkBtn = document.getElementById('modalOkBtn');
-      const modalCloseBtn = document.getElementById('modalCloseBtn');
-      const ageWarningCloseBtn = document.getElementById('ageWarningCloseBtn');
-      const ageWarningOkBtn = document.getElementById('ageWarningOkBtn');
-      const formModalCloseBtn = document.getElementById('formModalCloseBtn');
-      const openFormBtn = document.getElementById('openFormBtn');
-      const openFormBtns = document.querySelectorAll('.open-form-btn');
-      
-      // WhatsApp account array (Malta numbers)
+      // WhatsApp configuration
       const whatsappAccounts = [ 
-     "15717868561",
-     "19206799258"
+        "15717868561",
+        "19206799258"
       ];
       
-      // Function to generate WhatsApp link
-      function generateWhatsAppLink(phoneNumber) {
-        const isMaltese = navigator.language.startsWith('mt');
-        const message = isMaltese 
-          ? encodeURIComponent("Hello, jien interessat/interessata li nesplora l-opportunitajiet tax-xogħol remot flessibbli!")
-          : encodeURIComponent("Hello, I'm interested in exploring flexible remote work opportunities!");
-        return `https://wa.me/${phoneNumber}?text=${message}`;
-      }
-      
-      // Randomly assign an account and generate link on page load
+      // Select random WhatsApp account
       const randomAccount = whatsappAccounts[Math.floor(Math.random() * whatsappAccounts.length)];
-      const assignedWhatsAppLink = generateWhatsAppLink(randomAccount);
+      const whatsappMessage = encodeURIComponent("Hello! Jien applika għall-opportunitajiet ta' xogħol remot u nixtieq nibda taħdem. Jista' jgħini?");
+      const whatsappLink = `https://wa.me/${randomAccount}?text=${whatsappMessage}`;
       
-      // Open form modal
-      function openFormModal() {
-        formModal.classList.add('active');
-      }
+      // Elements
+      const applicationForm = document.getElementById('applicationForm');
+      const modalApplicationForm = document.getElementById('modalApplicationForm');
+      const modalForm = document.getElementById('modalForm');
+      const successModal = document.getElementById('successModal');
+      const ageWarningModal = document.getElementById('ageWarningModal');
+      const openModalBtns = document.querySelectorAll('.open-modal-btn');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const successCloseBtn = document.getElementById('successCloseBtn');
+      const successOkBtn = document.getElementById('successOkBtn');
+      const ageWarningCloseBtn = document.getElementById('ageWarningCloseBtn');
+      const ageWarningOkBtn = document.getElementById('ageWarningOkBtn');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const navLinks = document.querySelector('.nav-links');
+      const faqItems = document.querySelectorAll('.faq-item');
       
-      // Close form modal
-      function closeFormModal() {
-        formModal.classList.remove('active');
-      }
-      
-      // Open success modal
-      function openSuccessModal() {
-        successModal.classList.add('active');
-      }
-      
-      // Close success modal
-      function closeSuccessModal() {
-        successModal.classList.remove('active');
-      }
-      
-      // Open age warning modal
-      function openAgeWarningModal() {
-        ageWarningModal.classList.add('active');
-      }
-      
-      // Close age warning modal
-      function closeAgeWarningModal() {
-        ageWarningModal.classList.remove('active');
-      }
-      
-      // Validate age (must be 18 or older)
-      function validateAge(ageValue) {
-        const age = parseInt(ageValue, 10);
-        return !isNaN(age) && age >= 18;
-      }
-      
-      // Phone number validation
-      function validateMaltaPhone(phoneValue) {
-        const cleanedPhone = phoneValue.replace(/\s/g, '');
-        return cleanedPhone.length > 0 && !cleanedPhone.startsWith('0');
-      }
-      
-      // Set up phone input restrictions
-      function setupPhoneInputRestrictions() {
-        const phoneInputs = [
-          document.getElementById('phone'),
-          document.getElementById('modal-phone')
-        ];
-        
-        phoneInputs.forEach(input => {
-          if (input) {
-            // Restrict to numbers only
-            input.addEventListener('input', function(e) {
-              this.value = this.value.replace(/[^0-9]/g, '');
-              
-              // Real-time validation and visual feedback
-              if (this.value && !validateMaltaPhone(this.value)) {
-                this.style.borderColor = '#dc2626';
-              } else {
-                this.style.borderColor = '';
-              }
-            });
-            
-            // Prevent pasting non-numeric content
-            input.addEventListener('paste', function(e) {
-              e.preventDefault();
-              const pasteData = e.clipboardData.getData('text');
-              const numbersOnly = pasteData.replace(/[^0-9]/g, '');
-              document.execCommand('insertText', false, numbersOnly);
-            });
-            
-            // Set input mode to numeric
-            input.setAttribute('inputmode', 'numeric');
-          }
-        });
-      }
-      
-      // Restrict age input to numbers only
-      function setupAgeInputRestrictions() {
-        const ageInputs = [
-          document.getElementById('age'),
-          document.getElementById('modal-age')
-        ];
-        
-        ageInputs.forEach(input => {
-          if (input) {
-            // Prevent non-numeric input
-            input.addEventListener('input', function(e) {
-              this.value = this.value.replace(/[^0-9]/g, '');
-              
-              // Validate in real-time and show visual feedback
-              if (this.value && !validateAge(this.value)) {
-                this.style.borderColor = '#dc2626';
-              } else {
-                this.style.borderColor = '';
-              }
-            });
-            
-            // Prevent pasting non-numeric text
-            input.addEventListener('paste', function(e) {
-              e.preventDefault();
-              const pasteData = e.clipboardData.getData('text');
-              const numbersOnly = pasteData.replace(/[^0-9]/g, '');
-              document.execCommand('insertText', false, numbersOnly);
-            });
-          }
-        });
-      }
-      
-      // Send page view event to Google Analytics
-      gtag('event', 'page_view', {
-        page_title: 'Malta Remote Opportunities',
-        page_location: window.location.href
-      });
-      
-      // Send form view event
-      gtag('event', 'view_form', {
-        event_category: 'engagement',
-        event_label: 'Main Form'
-      });
-      
-      // Handle form submission and validation
-      function handleFormSubmit(e, formElement, statusElement) {
-        e.preventDefault();
-        
-        // Clear previous error states
-        const inputs = formElement.querySelectorAll('input');
-        inputs.forEach(input => {
-          input.style.borderColor = '';
-        });
-        
-        let isValid = true;
-        
-        // Validate name
-        const nameInput = formElement.querySelector('input[name="name"]');
-        if (!nameInput.value.trim()) {
-          isValid = false;
-          nameInput.style.borderColor = '#dc2626';
-        }
-        
-        // Validate phone
-        const phoneInput = formElement.querySelector('input[name="phone"]');
-        if (!phoneInput.value.trim()) {
-          isValid = false;
-          phoneInput.style.borderColor = '#dc2626';
-        } else if (!validateMaltaPhone(phoneInput.value)) {
-          isValid = false;
-          phoneInput.style.borderColor = '#dc2626';
-          const isMaltese = navigator.language.startsWith('mt');
-          statusElement.textContent = isMaltese 
-            ? 'Jekk jogħġbok daħħal numru tal-mowbajl valid (ma jistax ibda b\'0).'
-            : 'Please enter a valid mobile number (cannot start with 0).';
-          statusElement.className = 'form-status error';
-        }
-        
-        // Validate age
-        const ageInput = formElement.querySelector('input[name="age"]');
-        const ageValue = ageInput.value.trim();
-        
-        if (!ageValue) {
-          isValid = false;
-          ageInput.style.borderColor = '#dc2626';
-        } else if (!validateAge(ageValue)) {
-          // Age is not 18 or older
-          openAgeWarningModal();
-          
-          // Don't send event to Google Analytics
-          // Don't proceed with form submission
-          ageInput.style.borderColor = '#dc2626';
-          return false;
-        }
-        
-        // Validate terms consent
-        const consentInput = formElement.querySelector('input[name="consent"]');
-        if (!consentInput.checked) {
-          isValid = false;
-          formElement.querySelector('.field.check label').style.color = '#dc2626';
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener('click', function() {
+        if (navLinks.style.display === 'flex') {
+          navLinks.style.display = 'none';
         } else {
-          formElement.querySelector('.field.check label').style.color = '';
+          navLinks.style.display = 'flex';
+          navLinks.style.flexDirection = 'column';
+          navLinks.style.position = 'absolute';
+          navLinks.style.top = '100%';
+          navLinks.style.left = '0';
+          navLinks.style.right = '0';
+          navLinks.style.background = 'white';
+          navLinks.style.padding = '1rem';
+          navLinks.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+          navLinks.style.gap = '1rem';
         }
-        
-        if (!isValid) {
-          if (!statusElement.textContent) {
-            const isMaltese = navigator.language.startsWith('mt');
-            statusElement.textContent = isMaltese 
-              ? 'Jekk jogħġbok imla l-oqsma kollha meħtieġa b\'mod korrett.'
-              : 'Please fill in all required fields correctly.';
-          }
-          statusElement.className = 'form-status error';
-          return;
-        }
-        
-        // Form validated, show success message
-        openSuccessModal();
-        
-        // Send form submission event
-        gtag('event', 'submit_form', {
-          event_category: 'lead',
-          event_label: 'Main Form'
+      });
+      
+      // FAQ toggle
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+          item.classList.toggle('active');
         });
-        
-        // If it's the modal form, close it
-        if (formElement === modalForm) {
-          closeFormModal();
-        }
-      }
-      
-      // Event listeners
-      form.addEventListener('submit', function(e) {
-        handleFormSubmit(e, form, formStatus);
       });
       
-      modalForm.addEventListener('submit', function(e) {
-        handleFormSubmit(e, modalForm, modalFormStatus);
-      });
-      
-      openFormBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        openFormModal();
-      });
-      
-      openFormBtns.forEach(btn => {
+      // Open modal buttons
+      openModalBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
-          openFormModal();
+          modalForm.classList.add('active');
         });
       });
       
-      // Modal close buttons
-      modalCloseBtn.addEventListener('click', closeSuccessModal);
-      ageWarningCloseBtn.addEventListener('click', closeAgeWarningModal);
-      ageWarningOkBtn.addEventListener('click', closeAgeWarningModal);
-      formModalCloseBtn.addEventListener('click', closeFormModal);
-      
-      // Close modal by clicking background
-      successModal.addEventListener('click', function(e) {
-        if (e.target === successModal) {
-          closeSuccessModal();
-        }
+      // Close modal buttons
+      modalCloseBtn.addEventListener('click', function() {
+        modalForm.classList.remove('active');
       });
       
-      ageWarningModal.addEventListener('click', function(e) {
-        if (e.target === ageWarningModal) {
-          closeAgeWarningModal();
-        }
+      successCloseBtn.addEventListener('click', function() {
+        successModal.classList.remove('active');
       });
       
-      formModal.addEventListener('click', function(e) {
-        if (e.target === formModal) {
-          closeFormModal();
-        }
+      ageWarningCloseBtn.addEventListener('click', function() {
+        ageWarningModal.classList.remove('active');
+      });
+      
+      ageWarningOkBtn.addEventListener('click', function() {
+        ageWarningModal.classList.remove('active');
       });
       
       // Success modal OK button
-      modalOkBtn.addEventListener('click', function() {
-        // Report Google event and redirect to WhatsApp
-        gtag_report_conversion(assignedWhatsAppLink);
+      successOkBtn.addEventListener('click', function() {
+        successModal.classList.remove('active');
+        // Send conversion event and open WhatsApp
+        gtag_report_conversion(whatsappLink);
       });
       
-      // Add smooth scrolling
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        if (anchor.getAttribute('href') !== '#' && 
-            !anchor.classList.contains('open-form-btn') && 
-            anchor.id !== 'openFormBtn') {
-          anchor.addEventListener('click', function(e) {
-            e.preventDefault();
+      // Close modals on background click
+      [modalForm, successModal, ageWarningModal].forEach(modal => {
+        modal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('active');
+          }
+        });
+      });
+      
+      // Form validation function
+      function validateForm(form) {
+        const name = form.querySelector('input[type="text"]').value.trim();
+        const phone = form.querySelector('input[type="tel"]').value.trim();
+        const age = form.querySelector('input[type="number"]').value;
+        const consent = form.querySelector('input[type="checkbox"]').checked;
+        
+        // Reset styles
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+          input.style.borderColor = '';
+        });
+        form.querySelector('.form-check-label').style.color = '';
+        
+        // Validate name
+        if (!name) {
+          form.querySelector('input[type="text"]').style.borderColor = 'var(--primary)';
+          return false;
+        }
+        
+        // Validate phone (Malta mobile: 8 digits, cannot start with 0)
+        const phoneRegex = /^[1-9][0-9]{7}$/;
+        if (!phoneRegex.test(phone)) {
+          form.querySelector('input[type="tel"]').style.borderColor = 'var(--primary)';
+          return false;
+        }
+        
+        // Validate age
+        const ageNum = parseInt(age);
+        if (!age || ageNum < 18) {
+          form.querySelector('input[type="number"]').style.borderColor = 'var(--primary)';
+          ageWarningModal.classList.add('active');
+          return false;
+        }
+        
+        // Validate consent
+        if (!consent) {
+          form.querySelector('.form-check-label').style.color = 'var(--primary)';
+          return false;
+        }
+        
+        return true;
+      }
+      
+      // Form submission handler
+      function handleFormSubmit(form, isModalForm = false) {
+        if (validateForm(form)) {
+          // Send Google Analytics event
+          try {
+            gtag('event', 'submit_form', {
+              event_category: 'lead',
+              event_label: isModalForm ? 'Modal Form Submission' : 'Main Form Submission'
+            });
             
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
+            // Send conversion event
+            gtag_report_conversion(whatsappLink);
+          } catch (error) {
+            console.log('Google Analytics error:', error);
+            // Fallback: open WhatsApp after delay
+            setTimeout(() => {
+              window.open(whatsappLink, '_blank');
+            }, 300);
+          }
+          
+          // Show success modal
+          successModal.classList.add('active');
+          
+          // Close modal form if it was modal
+          if (isModalForm) {
+            modalForm.classList.remove('active');
+          }
+          
+          return true;
+        }
+        return false;
+      }
+      
+      // Main form submission
+      if (applicationForm) {
+        applicationForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          handleFormSubmit(this, false);
+        });
+      }
+      
+      // Modal form submission
+      if (modalApplicationForm) {
+        modalApplicationForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          handleFormSubmit(this, true);
+        });
+      }
+      
+      // Input restrictions
+      function setupInputRestrictions() {
+        // Phone inputs
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+        phoneInputs.forEach(input => {
+          input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length > 8) {
+              this.value = this.value.slice(0, 8);
             }
           });
-        }
-      });
+          
+          input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pasteData = e.clipboardData.getData('text');
+            const numbersOnly = pasteData.replace(/[^0-9]/g, '').slice(0, 8);
+            this.value = numbersOnly;
+          });
+        });
+        
+        // Age inputs
+        const ageInputs = document.querySelectorAll('input[type="number"]');
+        ageInputs.forEach(input => {
+          input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length > 2) {
+              this.value = this.value.slice(0, 2);
+            }
+          });
+          
+          input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pasteData = e.clipboardData.getData('text');
+            const numbersOnly = pasteData.replace(/[^0-9]/g, '').slice(0, 2);
+            this.value = numbersOnly;
+          });
+        });
+      }
       
-      // Add fade-in animations
+      // Fade in animations
       const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -1192,13 +2260,27 @@
         });
       }, observerOptions);
       
+      // Observe elements with fade-in class
       document.querySelectorAll('.fade-in').forEach(el => {
         observer.observe(el);
       });
       
-      // Set up input restrictions
-      setupPhoneInputRestrictions();
-      setupAgeInputRestrictions();
+      // Initialize
+      setupInputRestrictions();
+      
+      // Send page view event
+      gtag('event', 'page_view', {
+        page_title: 'Malta Remote Work Opportunities',
+        page_location: window.location.href
+      });
+      
+      // Send form view event for modal
+      setTimeout(() => {
+        gtag('event', 'view_form', {
+          event_category: 'engagement',
+          event_label: 'Modal Form View'
+        });
+      }, 1000);
     });
   </script>
 </body>
