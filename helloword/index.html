@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>HelloWord翻译助手专业评测 | 多平台社交翻译工具 - 007软件中心</title>
+<meta name="description" content="007软件中心提供HelloWord翻译助手专业评测与下载信息。跨平台社交翻译管理工具，支持WhatsApp、Facebook等多平台互联互通，安全无毒，官方正版下载。" />
+<meta name="keywords" content="HelloWord翻译助手,社交翻译软件,多平台翻译工具,007软件中心,软件评测,安全下载" />
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #0ea5e9;
+  --light-bg: #f8fafc;
+  --card-bg: #ffffff;
+}
+
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; 
+  background-color: var(--light-bg);
+  color: #1f2937;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* 通用卡片样式 */
+.software-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.software-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 主按钮样式 */
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.2);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+  color: white;
+}
+
+/* 副按钮样式 */
+.secondary-btn {
+  background: white;
+  color: var(--primary);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 2px solid var(--primary);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.secondary-btn:hover {
+  background: #eff6ff;
+  color: var(--primary-dark);
+}
+
+/* 选项卡样式 */
+.tabs-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.tab-header {
+  display: flex;
+  overflow-x: auto;
+  padding: 8px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  scrollbar-width: none;
+}
+
+.tab-header::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  flex: 1;
+  min-width: 130px;
+  padding: 14px 20px;
+  background: white;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #4b5563;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 4px;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.tab-btn i {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.15);
+}
+
+.tab-content {
+  display: none;
+  padding: 28px;
+  animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 功能卡片样式 */
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary);
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+/* 下载步骤样式 */
+.download-step {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  border-left: 4px solid var(--primary);
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-right: 14px;
+  font-size: 16px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .hero-section {
+    flex-direction: column;
+  }
+  
+  .hero-left, .hero-right {
+    width: 100% !important;
+  }
+  
+  .tab-btn {
+    min-width: 115px;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .tab-content {
+    padding: 20px;
+  }
+  
+  .primary-btn, .secondary-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .feature-card {
+    padding: 18px;
+  }
+  
+  .software-title {
+    font-size: 24px !important;
+  }
+  
+  .section-title {
+    font-size: 22px !important;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .tab-btn {
+    min-width: 120px;
+    padding: 13px 18px;
+  }
+}
+
+/* 截图容器 */
+.screenshot-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 18px;
+}
+
+.screenshot-container:hover {
+  transform: scale(1.01);
+}
+
+/* 信任徽章 */
+.trust-badge {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.trust-badge:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* 平台徽章 */
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-weight: 600;
+  color: #334155;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.platform-badge i {
+  margin-right: 5px;
+  color: var(--primary);
+}
+
+/* 固定侧边栏 */
+.sticky-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+/* 页面标题样式 */
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 2px;
+}
+
+/* 优化文本可读性 */
+.text-content {
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.text-content p {
+  margin-bottom: 16px;
+}
+
+/* 软件信息标签 */
+.info-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #eff6ff;
+  color: var(--primary);
+  padding: 5px 10px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+.info-tag i {
+  margin-right: 4px;
+}
+
+/* 软件标题 */
+.software-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+/* 顶部图片区域 */
+.top-image-container {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.top-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 安全提示样式 */
+.safety-notice {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 24px;
+}
+
+/* 页脚链接样式 */
+.footer-link {
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 14px;
+}
+
+.footer-link:hover {
+  color: var(--primary);
+}
+
+/* 软件logo和标题容器 */
+.software-header-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.software-logo {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-right: 20px;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+/* 信息表格样式 */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.info-icon {
+  width: 40px;
+  height: 40px;
+  background: #f8fafc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  color: var(--primary);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* 下载按钮容器 */
+.download-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.download-platform-btn {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.download-platform-btn:hover {
+  border-color: var(--primary);
+  background: #eff6ff;
+}
+
+.platform-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.windows-icon {
+  background: #0078d7;
+  color: white;
+}
+
+.mac-icon {
+  background: #000000;
+  color: white;
+}
+
+/* 官方网站按钮 */
+.official-site-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: #1f2937;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.official-site-btn:hover {
+  background: #374151;
+  color: white;
+}
+
+/* Hero区域按钮容器 */
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+/* 安全无毒标签样式 */
+.safety-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 5px 12px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  border: 1px solid #a7f3d0;
+}
+
+.safety-tag i {
+  margin-right: 5px;
+  color: #10b981;
+}
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- HEADER -->
+<header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center">
+          <i class="fas fa-cube text-white text-xl"></i>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-gray-900">007软件中心</div>
+          <div class="text-xs text-gray-500">专业软件分类信息与评测</div>
+        </div>
+      </div>
+      <div class="text-sm bg-green-50 text-green-700 px-4 py-2 rounded-full font-medium hidden md:block">
+        <i class="fas fa-shield-alt mr-1"></i>安全认证信息页
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container mx-auto px-4 max-w-6xl py-6">
+
+  <!-- HERO 区域 -->
+  <section class="mb-10">
+    <div class="flex flex-col lg:flex-row gap-8 hero-section">
+      <!-- 左侧：软件核心信息 -->
+      <div class="lg:w-2/3 hero-left">
+        <div class="software-card p-6 h-full">
+          <!-- 软件Logo和标题 - 左对齐 -->
+          <div class="software-header-container">
+            <div class="software-logo">
+              <i class="fas fa-language"></i>
+            </div>
+            <div>
+              <h1 class="software-title">HelloWord翻译助手</h1>
+              <p class="text-gray-600">专业社交翻译管理软件 · 跨平台互联互通</p>
+            </div>
+          </div>
+          
+          <!-- 软件标签 -->
+          <div class="flex flex-wrap items-center gap-3 mb-8">
+            <span class="info-tag">
+              <i class="fas fa-star"></i> 4.8/5.0
+            </span>
+            <span class="info-tag">
+              <i class="fas fa-download"></i> 120万+下载
+            </span>
+            <span class="safety-tag">
+              <i class="fas fa-shield-check"></i> 安全无毒
+            </span>
+            <span class="info-tag bg-green-100 text-green-800">
+              <i class="fas fa-tag"></i> v7.58最新版
+            </span>
+          </div>
+          
+          <!-- 软件信息表格 -->
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-user-cog"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">开发商</div>
+                <div class="font-semibold text-gray-900">HelloWord Technologies</div>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">最近更新</div>
+                <div class="font-semibold text-gray-900">2025年1月15日</div>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-folder"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">软件分类</div>
+                <div class="font-semibold text-gray-900">社交工具/翻译软件</div>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-key"></i>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">软件授权</div>
+                <div class="font-semibold text-gray-900">免费版+高级版</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 下载和查看详情按钮 -->
+          <div class="hero-buttons">
+            <a href="#download" class="primary-btn">
+              <i class="fas fa-download mr-2"></i>立即下载免费版
+            </a>
+            <a href="#features-detail" class="secondary-btn">
+              <i class="fas fa-info-circle mr-2"></i>查看功能详情
+            </a>
+          </div>
+          
+          <!-- 安全提示 -->
+          <div class="safety-notice">
+            <div class="flex items-start">
+              <i class="fas fa-shield-alt text-blue-500 text-lg mt-1 mr-3"></i>
+              <div>
+                <div class="font-semibold text-gray-900 mb-1">安全提示</div>
+                <p class="text-sm text-gray-700">本页面所有链接均指向官方网站，确保您下载的是正版安全软件，避免恶意程序风险。007软件中心严格审核所有软件来源，保障用户下载安全。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右侧：下载信任区域 -->
+      <div class="lg:w-1/3 hero-right">
+        <div class="software-card p-6 h-full sticky-sidebar">
+          <h3 class="text-xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">立即获取正版</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <p class="text-gray-700 mb-4">选择您的操作系统版本：</p>
+              
+              <div class="download-buttons">
+                <!-- Windows 下载 -->
+                <a href="https://www.helloword.com.cn/" 
+                   class="download-platform-btn">
+                  <div class="platform-icon windows-icon">
+                    <i class="fab fa-windows"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-bold text-gray-900">Windows 版本</div>
+                    <div class="text-sm text-gray-600">v7.58 · 58.7 MB · 官方安装包</div>
+                  </div>
+                  <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-download text-white"></i>
+                  </div>
+                </a>
+                
+                <!-- macOS 下载 -->
+                <a href="https://www.helloword.com.cn/" 
+                   class="download-platform-btn">
+                  <div class="platform-icon mac-icon">
+                    <i class="fab fa-apple"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-bold text-gray-900">macOS 版本</div>
+                    <div class="text-sm text-gray-600">v7.58 · 89.3 MB · 官方安装包</div>
+                  </div>
+                  <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-download text-white"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- 官方网站链接 -->
+            <div class="pt-4 border-t border-gray-200">
+              <a href="https://www.helloworld.com.cn" 
+                 class="official-site-btn">
+                <i class="fas fa-external-link-alt mr-3"></i>
+                <span class="font-semibold">访问官方网站</span>
+              </a>
+            </div>
+            
+            <!-- 007软件中心提示 -->
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <div class="flex items-start">
+                <i class="fas fa-info-circle text-gray-500 text-lg mt-1 mr-3"></i>
+                <div>
+                  <div class="font-semibold text-gray-900 mb-1">007软件中心提示</div>
+                  <p class="text-sm text-gray-700">该软件声明为免费下载安装，但可能存在字符套餐等付费增值服务。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 软件信息主图 -->
+  <div class="top-image-container">
+    <img src="https://www.helloword.com.cn/_nuxt/img/app.687df59.png" 
+         alt="HelloWord翻译助手官网主图" 
+         class="top-image"
+         onerror="this.src='https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'">
+  </div>
+
+  <!-- 选项卡区域 -->
+  <section class="mb-12">
+    <div class="tabs-container">
+      <!-- 选项卡标题 -->
+      <div class="tab-header">
+        <button class="tab-btn active" data-tab="features-detail">
+          <i class="fas fa-list-ul"></i>功能特色
+        </button>
+        <button class="tab-btn" data-tab="screenshots">
+          <i class="fas fa-images"></i>界面截图
+        </button>
+        <button class="tab-btn" data-tab="download-guide">
+          <i class="fas fa-download"></i>安装指南
+        </button>
+        <button class="tab-btn" data-tab="faq">
+          <i class="fas fa-question-circle"></i>常见问题
+        </button>
+      </div>
+      
+      <!-- 选项卡内容 -->
+      <div id="tab-content">
+        <!-- 功能特色选项卡 -->
+        <div class="tab-content active" id="features-detail-tab">
+          <h3 class="section-title">软件功能特色</h3>
+          <p class="text-gray-700 mb-8">007软件中心专业评测：HelloWord翻译助手是一款功能全面的社交翻译管理工具，特别适合跨境卖家、海外华人及国际商务人士使用。</p>
+          
+          <!-- 核心功能亮点 -->
+          <div class="mb-10">
+            <h4 class="text-xl font-bold text-gray-900 mb-6">核心功能亮点</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- 聚合社交功能 -->
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-share-alt"></i>
+                </div>
+                <h5 class="text-lg font-bold text-gray-900 mb-4">聚合社交 - 跨平台互联互通</h5>
+                <p class="text-content">
+                  汇聚国际主流社交软件，如WhatsApp、Facebook、Instagram、Line、Tinder等，实现跨平台互联互通。用户可轻松管理多个社交账号，随时随地畅享全球社交新体验。
+                </p>
+                
+                <div class="mt-6">
+                  <div class="font-semibold text-gray-900 mb-3">支持的平台：</div>
+                  <div class="flex flex-wrap">
+                    <span class="platform-badge">
+                      <i class="fab fa-whatsapp"></i> WhatsApp
+                    </span>
+                    <span class="platform-badge">
+                      <i class="fab fa-facebook"></i> Facebook
+                    </span>
+                    <span class="platform-badge">
+                      <i class="fab fa-instagram"></i> Instagram
+                    </span>
+                    <span class="platform-badge">
+                      <i class="fab fa-line"></i> Line
+                    </span>
+                    <span class="platform-badge">Telegram</span>
+                    <span class="platform-badge">Tinder</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 多源翻译功能 -->
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <i class="fas fa-language"></i>
+                </div>
+                <h5 class="text-lg font-bold text-gray-900 mb-4">多源翻译 - 全语种覆盖</h5>
+                <p class="text-content">
+                  整合国内外众多智能翻译资源，力求为您提供最精准、最专业的自动翻译服务。以匠心打造每一次翻译，确保您的信息传达准确无误，助您实现全球化业务拓展。
+                </p>
+                
+                <div class="mt-6">
+                  <div class="font-semibold text-gray-900 mb-3">翻译特色：</div>
+                  <ul class="space-y-2 text-gray-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                      <span>双向自动翻译，实时无障碍沟通</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                      <span>支持100+种语言互译，覆盖全球主要语种</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                      <span>专业术语库，针对商务场景优化</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 其他特色功能 -->
+          <div>
+            <h4 class="text-xl font-bold text-gray-900 mb-6">其他特色功能</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- 应用无限多开 -->
+              <div class="feature-card">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <i class="fas fa-layer-group text-blue-600 text-xl"></i>
+                </div>
+                <h5 class="text-lg font-bold text-gray-900 mb-3">应用无限多开</h5>
+                <p class="text-gray-700 text-sm">支持同一社交平台多账号同时在线，每个账号独立运行，方便管理个人号、工作号等多个身份。</p>
+              </div>
+              
+              <!-- 企业账户管理 -->
+              <div class="feature-card">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <i class="fas fa-building text-green-600 text-xl"></i>
+                </div>
+                <h5 class="text-lg font-bold text-gray-900 mb-3">企业账户管理</h5>
+                <p class="text-gray-700 text-sm">为企业用户提供团队账户管理功能，支持员工权限分配、对话记录监控、客户分配管理等企业级功能。</p>
+              </div>
+              
+              <!-- 高效获客工具 -->
+              <div class="feature-card">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                  <i class="fas fa-bullseye text-purple-600 text-xl"></i>
+                </div>
+                <h5 class="text-lg font-bold text-gray-900 mb-3">高效获客工具</h5>
+                <p class="text-gray-700 text-sm">内置智能获客工具，支持关键词搜索、群组挖掘、潜在客户筛选等功能，快速拓展海外客户资源。</p>
+              </div>
+              
+              <!-- 智能客户管理 -->
+              <div class="feature-card">
+                <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+                  <i class="fas fa-users text-amber-600 text-xl"></i>
+                </div>
+                <h5 class="text-lg font-bold text-gray-900 mb-3">智能客户管理</h5>
+                <p class="text-gray-700 text-sm">好友统计、自动回复、客户档案等功能，全面管理客户关系，提升沟通效率和客户满意度。</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 007软件中心评测总结 -->
+          <div class="mt-10 p-6 bg-gray-50 rounded-xl border border-gray-200">
+            <h5 class="text-lg font-bold text-gray-900 mb-3">007软件中心评测总结</h5>
+            <p class="text-gray-700 mb-4">HelloWord翻译助手在社交翻译管理领域表现出色，特别适合需要管理多个社交账号并进行跨语言沟通的用户。软件界面简洁，功能全面，翻译准确度较高，安全性能良好。</p>
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                <i class="fas fa-star text-blue-600"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900">综合评分：4.8/5.0</div>
+                <div class="text-sm text-gray-600">基于120万+用户使用反馈</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 界面截图选项卡 -->
+        <div class="tab-content" id="screenshots-tab">
+          <h3 class="section-title">软件界面预览</h3>
+          <p class="text-gray-700 mb-8">007软件中心为您展示HelloWord翻译助手的实际使用界面截图，帮助您了解软件操作流程和功能布局。</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 mb-4">社交账号管理</h4>
+              <div class="screenshot-container">
+                <img src="images/applist.helloword.png" 
+                     alt="HelloWord主界面" 
+                     class="w-full h-auto rounded-lg">
+              </div>
+              <p class="text-gray-600 text-sm mt-3">集中管理多个社交平台账号，一目了然的账号状态和消息概览，支持拖拽排序和快速切换。</p>
+            </div>
+            
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 mb-4">跨平台社交</h4>
+              <div class="screenshot-container">
+                <img src="images/app1.helloword.png" 
+                     alt="跨平台社交" 
+                     class="w-full h-auto rounded-lg">
+              </div>
+              <p class="text-gray-600 text-sm mt-3">实时双向翻译，支持多语言聊天，自动检测并翻译消息内容，保留原始消息供参考。</p>
+            </div>
+			
+			<div>
+              <h4 class="text-lg font-bold text-gray-900 mb-4">全语种覆盖</h4>
+              <div class="screenshot-container">
+                <img src="images/app2.helloword.png" 
+                     alt="全语种覆盖" 
+                     class="w-full h-auto rounded-lg">
+              </div>
+              <p class="text-gray-600 text-sm mt-3">实时双向翻译，支持多语言聊天，自动检测并翻译消息内容，保留原始消息供参考。</p>
+            </div>
+			
+			<div>
+              <h4 class="text-lg font-bold text-gray-900 mb-4">多源智能翻译</h4>
+              <div class="screenshot-container">
+                <img src="images/app3.helloword.png" 
+                     alt="多源智能翻译" 
+                     class="w-full h-auto rounded-lg">
+              </div>
+              <p class="text-gray-600 text-sm mt-3">实时双向翻译，支持多语言聊天，自动检测并翻译消息内容，保留原始消息供参考。</p>
+            </div>
+			
+          </div>
+          
+          <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl">
+            <h4 class="text-xl font-bold text-gray-900 mb-4 text-center">功能界面展示</h4>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                <i class="fas fa-sync-alt text-blue-600 text-2xl mb-3"></i>
+                <div class="font-semibold text-gray-900">自动翻译</div>
+                <p class="text-gray-700 text-xs mt-1">实时双向翻译</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                <i class="fas fa-user-plus text-green-600 text-2xl mb-3"></i>
+                <div class="font-semibold text-gray-900">好友管理</div>
+                <p class="text-gray-700 text-xs mt-1">智能分组标签</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                <i class="fas fa-chart-bar text-purple-600 text-2xl mb-3"></i>
+                <div class="font-semibold text-gray-900">数据统计</div>
+                <p class="text-gray-700 text-xs mt-1">可视化报表</p>
+              </div>
+              <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                <i class="fas fa-cogs text-amber-600 text-2xl mb-3"></i>
+                <div class="font-semibold text-gray-900">设置中心</div>
+                <p class="text-gray-700 text-xs mt-1">个性化配置</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 下载安装指南选项卡 -->
+        <div class="tab-content" id="download-guide-tab">
+          <h3 class="section-title">下载与安装指南</h3>
+          <p class="text-gray-700 mb-8">007软件中心为您提供详细的HelloWord翻译助手下载安装指南，按照以下步骤操作即可轻松完成安装。</p>
+          
+          <div class="mb-10">
+            <h4 class="text-xl font-bold text-gray-900 mb-6">下载安装步骤</h4>
+            
+            <!-- 步骤1 -->
+            <div class="download-step">
+              <div class="flex items-center mb-4">
+                <span class="step-number">1</span>
+                <h5 class="text-lg font-bold text-gray-900">下载安装程序</h5>
+              </div>
+              <p class="text-gray-700 mb-4">点击页面上的下载按钮，选择适合您操作系统的版本：</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div class="bg-blue-50 p-5 rounded-lg">
+                  <h6 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <i class="fab fa-windows text-blue-600 mr-2"></i>
+                    Windows 用户
+                  </h6>
+                  <ul class="list-disc pl-5 text-gray-700 text-sm space-y-1">
+                    <li>点击"Windows 版本"按钮下载 .exe 安装文件</li>
+                    <li>文件大小：58.7 MB</li>
+                    <li>支持 Windows 10/11 系统</li>
+                  </ul>
+                </div>
+                <div class="bg-gray-50 p-5 rounded-lg">
+                  <h6 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <i class="fab fa-apple text-gray-800 mr-2"></i>
+                    macOS 用户
+                  </h6>
+                  <ul class="list-disc pl-5 text-gray-700 text-sm space-y-1">
+                    <li>点击"macOS 版本"按钮下载 .dmg 安装文件</li>
+                    <li>文件大小：89.3 MB</li>
+                    <li>支持 macOS 11.0 以上系统</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 步骤2 -->
+            <div class="download-step">
+              <div class="flex items-center mb-4">
+                <span class="step-number">2</span>
+                <h5 class="text-lg font-bold text-gray-900">运行安装程序</h5>
+              </div>
+              <p class="text-gray-700 mb-4">双击下载的安装文件，按照提示完成安装：</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div class="bg-white p-5 rounded-lg border border-gray-200">
+                  <h6 class="font-bold text-gray-900 mb-3">Windows 安装步骤</h6>
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-blue-600 font-bold text-sm">1</span>
+                      </div>
+                      <p class="text-gray-700 text-sm">双击 .exe 文件启动安装向导</p>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-blue-600 font-bold text-sm">2</span>
+                      </div>
+                      <p class="text-gray-700 text-sm">选择安装位置（建议使用默认位置）</p>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-blue-600 font-bold text-sm">3</span>
+                      </div>
+                      <p class="text-gray-700 text-sm">点击"安装"按钮开始安装过程</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="bg-white p-5 rounded-lg border border-gray-200">
+                  <h6 class="font-bold text-gray-900 mb-3">macOS 安装步骤</h6>
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-gray-800 font-bold text-sm">1</span>
+                      </div>
+                      <p class="text-gray-700 text-sm">双击 .dmg 文件打开磁盘映像</p>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-gray-800 font-bold text-sm">2</span>
+                      </div>
+                      <p class="text-gray-700 text-sm">将 HelloWord 图标拖到"应用程序"文件夹</p>
+                    </div>
+                    <div class="flex items-start">
+                      <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-gray-800 font-bold text-sm">3</span>
+                      </div>
+                      <p class="text-gray-700 text-sm">在应用程序文件夹中双击 HelloWord 启动</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 步骤3 -->
+            <div class="download-step">
+              <div class="flex items-center mb-4">
+                <span class="step-number">3</span>
+                <h5 class="text-lg font-bold text-gray-900">首次设置与使用</h5>
+              </div>
+              <p class="text-gray-700 mb-4">安装完成后，按照以下步骤开始使用：</p>
+              <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                      <i class="fas fa-user-plus text-blue-600 text-2xl"></i>
+                    </div>
+                    <div class="font-bold text-gray-900 mb-2">创建账户</div>
+                    <p class="text-gray-700 text-sm">注册新账户或登录现有账户</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                      <i class="fas fa-plus-circle text-green-600 text-2xl"></i>
+                    </div>
+                    <div class="font-bold text-gray-900 mb-2">添加账号</div>
+                    <p class="text-gray-700 text-sm">添加需要管理的社交平台账号</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                      <i class="fas fa-cogs text-purple-600 text-2xl"></i>
+                    </div>
+                    <div class="font-bold text-gray-900 mb-2">配置设置</div>
+                    <p class="text-gray-700 text-sm">配置翻译语言偏好和通知设置</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 007软件中心提示 -->
+          <div class="bg-blue-50 p-5 rounded-xl border border-blue-200">
+            <h5 class="text-lg font-bold text-gray-900 mb-3">007软件中心提示</h5>
+            <p class="text-gray-700">如果您在下载或安装过程中遇到任何问题，可以访问官方网站的帮助中心或联系技术支持。我们建议定期检查软件更新，以获得最佳的使用体验和安全保障。</p>
+          </div>
+        </div>
+        
+        <!-- 常见问题选项卡 -->
+        <div class="tab-content" id="faq-tab">
+          <h3 class="section-title">常见问题解答</h3>
+          
+          <div class="space-y-8">
+            <!-- 问题1 -->
+            <div class="border-b border-gray-200 pb-6">
+              <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                <i class="fas fa-question-circle text-blue-500 mr-3"></i>
+                HelloWord翻译助手是免费的吗？
+              </h4>
+              <div class="bg-blue-50 p-5 rounded-lg">
+                <p class="text-gray-700">
+                  HelloWord提供免费版和高级版两种版本。免费版包含基础翻译功能和单个社交账号管理，适合个人用户基本需求。
+                  高级版提供无限账号管理、高级翻译引擎、企业功能、客户关系管理等高级功能，适合商务用户和专业用户。
+                </p>
+              </div>
+            </div>
+            
+            <!-- 问题2 -->
+            <div class="border-b border-gray-200 pb-6">
+              <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                <i class="fas fa-question-circle text-blue-500 mr-3"></i>
+                支持哪些社交平台？
+              </h4>
+              <div class="bg-blue-50 p-5 rounded-lg">
+                <p class="text-gray-700 mb-3">
+                  目前支持WhatsApp、Facebook、Instagram、Line、Tinder、Telegram等主流社交平台，并持续增加新的平台支持。
+                </p>
+              </div>
+            </div>
+            
+            <!-- 问题3 -->
+            <div class="border-b border-gray-200 pb-6">
+              <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                <i class="fas fa-question-circle text-blue-500 mr-3"></i>
+                软件安全性如何？
+              </h4>
+              <div class="bg-blue-50 p-5 rounded-lg">
+                <p class="text-gray-700">
+                  HelloWord采用本地加密存储技术，您的账号信息和聊天记录都使用加密算法保存在本地设备上。
+                  所有数据传输都经过SSL加密，确保您的账号安全。007软件中心已验证其软件来源的安全性。
+                </p>
+              </div>
+            </div>
+            
+            <!-- 问题4 -->
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                <i class="fas fa-question-circle text-blue-500 mr-3"></i>
+                是否需要网络连接？
+              </h4>
+              <div class="bg-blue-50 p-5 rounded-lg">
+                <p class="text-gray-700">
+                  基础社交功能可以在离线状态下使用，但翻译功能需要网络连接。我们建议保持网络连接以获得最佳的翻译体验和实时消息同步。
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 更多帮助 -->
+          <div class="mt-10 p-6 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl text-white">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+              <div>
+                <h4 class="text-xl font-bold mb-2">更多问题需要帮助？</h4>
+                <p>访问官方网站查看完整文档或联系技术支持团队。</p>
+              </div>
+              <a href="https://www.helloworld.com.cn" 
+                 class="mt-4 md:mt-0 px-6 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                访问官方帮助中心
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载区域 -->
+  <section id="download" class="mb-12">
+    <div class="bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl p-8 md:p-10 text-white text-center">
+      <h2 class="text-3xl font-bold mb-4">立即下载HelloWord翻译助手</h2>
+      <p class="text-lg mb-8 opacity-95 max-w-2xl mx-auto">007软件中心提供官方正版下载，安全可靠，保障您的使用体验</p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-6 mb-8">
+        <a href="https://www.helloword.com.cn/" 
+           class="bg-white text-blue-600 font-bold py-4 px-8 rounded-xl text-lg hover:bg-gray-100 transition-colors shadow-lg">
+          <i class="fab fa-windows mr-3"></i>下载Windows版
+        </a>
+        <a href="https://www.helloword.com.cn/" 
+           class="bg-gray-900 text-white font-bold py-4 px-8 rounded-xl text-lg hover:bg-gray-800 transition-colors shadow-lg">
+          <i class="fab fa-apple mr-3"></i>下载macOS版
+        </a>
+      </div>
+      
+      <div class="flex flex-wrap justify-center gap-6 mt-6">
+        <div class="flex items-center">
+          <i class="fas fa-shield-alt text-white opacity-90 mr-2"></i>
+          <span class="text-sm opacity-90">安全无毒 · 官方认证</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-clock text-white opacity-90 mr-2"></i>
+          <span class="text-sm opacity-90">快速安装 · 简单便捷</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-download text-white opacity-90 mr-2"></i>
+          <span class="text-sm opacity-90">官方正版 · 来源可靠</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 信任徽章 -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">007软件中心信任保障</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="trust-badge">
+        <i class="fas fa-shield-alt text-blue-500 text-3xl mb-4"></i>
+        <div class="font-bold text-gray-900">安全无毒</div>
+        <div class="text-sm text-gray-600 mt-1">严格审核软件来源</div>
+      </div>
+      <div class="trust-badge">
+        <i class="fas fa-check-circle text-green-500 text-3xl mb-4"></i>
+        <div class="font-bold text-gray-900">官方正版</div>
+        <div class="text-sm text-gray-600 mt-1">直接官方下载渠道</div>
+      </div>
+      <div class="trust-badge">
+        <i class="fas fa-file-alt text-purple-500 text-3xl mb-4"></i>
+        <div class="font-bold text-gray-900">专业评测</div>
+        <div class="text-sm text-gray-600 mt-1">全面软件功能分析</div>
+      </div>
+      <div class="trust-badge">
+        <i class="fas fa-award text-amber-500 text-3xl mb-4"></i>
+        <div class="font-bold text-gray-900">用户信赖</div>
+        <div class="text-sm text-gray-600 mt-1">120万+用户选择</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-gray-200 bg-gray-50 py-10">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-col md:flex-row justify-between items-start">
+      <div class="mb-6 md:mb-0 md:w-1/2">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center">
+            <i class="fas fa-cube text-white text-xl"></i>
+          </div>
+          <div>
+            <div class="text-xl font-bold text-gray-900">007软件中心</div>
+            <div class="text-sm text-gray-600">专业软件分类信息与评测平台</div>
+          </div>
+        </div>
+        <div class="flex space-x-4">
+          <a href="privacy.html" class="footer-link">隐私政策</a>
+          <a href="userterms.html" class="footer-link">使用手册</a>
+          <a href="aboutus.html" class="footer-link">关于我们</a>
+        </div>
+      </div>
+      <div class="text-sm text-gray-600 md:w-1/2 md:text-right">
+        <p class="mb-3">本页面为007软件中心独立制作的软件评测页面</p>
+        <p class="text-xs text-gray-500 mb-4">
+          © 2025 007软件中心·所有软件信息均基于官方发布内容和用户反馈整理·所有权利归原作者所有
+        </p>
+        <div class="flex justify-center md:justify-end space-x-4">
+          <a href="#" class="text-gray-500 hover:text-blue-600 transition-colors">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-blue-600 transition-colors">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-blue-600 transition-colors">
+            <i class="fab fa-weibo"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 选项卡切换功能
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const tabId = this.getAttribute('data-tab');
+      
+      // 移除所有active类
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // 添加active类到当前选项卡
+      this.classList.add('active');
+      document.getElementById(`${tabId}-tab`).classList.add('active');
+    });
+  });
+  
+  // 平滑滚动到下载区域
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      if (this.getAttribute('href') === '#') return;
+      
+      const targetId = this.getAttribute('href');
+      if (targetId.startsWith('#')) {
+        e.preventDefault();
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+  
+  // 响应式调整hero区域高度
+  function adjustHeroHeight() {
+    const heroLeft = document.querySelector('.hero-left');
+    const heroRight = document.querySelector('.hero-right');
+    
+    if (window.innerWidth >= 1024) { // 只在桌面端调整
+      if (heroLeft && heroRight) {
+        const leftHeight = heroLeft.offsetHeight;
+        const rightHeight = heroRight.offsetHeight;
+        
+        // 设置最小高度，确保两侧高度一致
+        const maxHeight = Math.max(leftHeight, rightHeight);
+        heroLeft.style.minHeight = maxHeight + 'px';
+        heroRight.style.minHeight = maxHeight + 'px';
+      }
+    } else {
+      // 移动端移除最小高度
+      if (heroLeft) heroLeft.style.minHeight = '';
+      if (heroRight) heroRight.style.minHeight = '';
+    }
+  }
+  
+  // 初始调整和窗口调整时重新计算
+  adjustHeroHeight();
+  window.addEventListener('resize', adjustHeroHeight);
+  
+  // 图片加载失败处理
+  const topImage = document.querySelector('.top-image');
+  if (topImage) {
+    topImage.addEventListener('error', function() {
+      this.src = 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+      this.alt = '软件界面展示图';
+    });
+  }
+});
+</script>
+
+</body>
+</html>
