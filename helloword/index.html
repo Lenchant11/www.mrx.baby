@@ -9,7 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-<!-- Google Analytics 4 and Google Ads -->
+<!-- Google Ads 转化追踪代码 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17658750857"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -756,10 +756,10 @@ body {
           
           <!-- 下载和查看详情按钮 -->
           <div class="hero-buttons">
-            <button class="primary-btn cta-button" onclick="trackAndRedirect('hero-download')">
+            <button class="primary-btn cta-button" onclick="trackConversion('hero-download')">
               <i class="fas fa-download mr-2"></i>立即免费下载 (v7.58最新版)
             </button>
-            <button class="secondary-btn cta-button" onclick="trackAndRedirect('hero-details')">
+            <button class="secondary-btn cta-button" onclick="trackConversion('hero-details')">
               <i class="fas fa-info-circle mr-2"></i>查看功能详情
             </button>
           </div>
@@ -788,7 +788,7 @@ body {
               
               <div class="download-buttons">
                 <!-- Windows 下载 -->
-                <button class="download-platform-btn cta-button" onclick="trackAndRedirect('windows-download')">
+                <button class="download-platform-btn cta-button" onclick="trackConversion('windows-download')">
                   <div class="platform-icon windows-icon">
                     <i class="fab fa-windows"></i>
                   </div>
@@ -802,7 +802,7 @@ body {
                 </button>
                 
                 <!-- macOS 下载 -->
-                <button class="download-platform-btn cta-button" onclick="trackAndRedirect('macos-download')">
+                <button class="download-platform-btn cta-button" onclick="trackConversion('macos-download')">
                   <div class="platform-icon mac-icon">
                     <i class="fab fa-apple"></i>
                   </div>
@@ -819,7 +819,7 @@ body {
             
             <!-- 官方网站链接 -->
             <div class="pt-4 border-t border-gray-200">
-              <button class="official-site-btn cta-button" onclick="trackAndRedirect('official-site')">
+              <button class="official-site-btn cta-button" onclick="trackConversion('official-site')">
                 <i class="fas fa-external-link-alt mr-3"></i>
                 <span class="font-semibold">访问官方网站</span>
               </button>
@@ -911,7 +911,7 @@ body {
                 </div>
                 
                 <!-- 新增CTA按钮 -->
-                <button class="primary-btn cta-button mt-6 w-full" onclick="trackAndRedirect('feature-social')">
+                <button class="primary-btn cta-button mt-6 w-full" onclick="trackConversion('feature-social')">
                   <i class="fas fa-external-link-alt mr-2"></i>立即体验跨平台社交
                 </button>
               </div>
@@ -945,7 +945,7 @@ body {
                 </div>
                 
                 <!-- 新增CTA按钮 -->
-                <button class="primary-btn cta-button mt-6 w-full" onclick="trackAndRedirect('feature-translation')">
+                <button class="primary-btn cta-button mt-6 w-full" onclick="trackConversion('feature-translation')">
                   <i class="fas fa-external-link-alt mr-2"></i>立即体验智能翻译
                 </button>
               </div>
@@ -964,7 +964,7 @@ body {
                 </div>
                 <h5 class="text-lg font-bold text-gray-900 mb-3">应用无限多开</h5>
                 <p class="text-gray-700 text-sm">支持同一社交平台多账号同时在线，每个账号独立运行，方便管理个人号、工作号等多个身份。</p>
-                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('feature-multiaccount')">立即体验 →</button>
+                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('feature-multiaccount')">立即体验 →</button>
               </div>
               
               <!-- 企业账户管理 -->
@@ -974,7 +974,7 @@ body {
                 </div>
                 <h5 class="text-lg font-bold text-gray-900 mb-3">企业账户管理</h5>
                 <p class="text-gray-700 text-sm">为企业用户提供团队账户管理功能，支持员工权限分配、对话记录监控、客户分配管理等企业级功能。</p>
-                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('feature-enterprise')">企业版详情 →</button>
+                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('feature-enterprise')">企业版详情 →</button>
               </div>
               
               <!-- 高效获客工具 -->
@@ -984,7 +984,7 @@ body {
                 </div>
                 <h5 class="text-lg font-bold text-gray-900 mb-3">高效获客工具</h5>
                 <p class="text-gray-700 text-sm">内置智能获客工具，支持关键词搜索、群组挖掘、潜在客户筛选等功能，快速拓展海外客户资源。</p>
-                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('feature-customer')">了解详情 →</button>
+                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('feature-customer')">了解详情 →</button>
               </div>
               
               <!-- 智能客户管理 -->
@@ -994,7 +994,7 @@ body {
                 </div>
                 <h5 class="text-lg font-bold text-gray-900 mb-3">智能客户管理</h5>
                 <p class="text-gray-700 text-sm">好友统计、自动回复、客户档案等功能，全面管理客户关系，提升沟通效率和客户满意度。</p>
-                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('feature-management')">立即体验 →</button>
+                <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('feature-management')">立即体验 →</button>
               </div>
             </div>
           </div>
@@ -1013,7 +1013,7 @@ body {
                   <div class="text-sm text-gray-600">基于120万+用户使用反馈</div>
                 </div>
               </div>
-              <button class="primary-btn cta-button" onclick="trackAndRedirect('summary-download')">
+              <button class="primary-btn cta-button" onclick="trackConversion('summary-download')">
                 立即免费下载
               </button>
             </div>
@@ -1034,7 +1034,7 @@ body {
                      class="w-full h-auto rounded-lg">
               </div>
               <p class="text-gray-600 text-sm mt-3">集中管理多个社交平台账号，一目了然的账号状态和消息概览，支持拖拽排序和快速切换。</p>
-              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('screenshot1-download')">立即体验 →</button>
+              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('screenshot1-download')">立即体验 →</button>
             </div>
             
             <div>
@@ -1045,7 +1045,7 @@ body {
                      class="w-full h-auto rounded-lg">
               </div>
               <p class="text-gray-600 text-sm mt-3">实时双向翻译，支持多语言聊天，自动检测并翻译消息内容，保留原始消息供参考。</p>
-              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('screenshot2-download')">立即体验 →</button>
+              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('screenshot2-download')">立即体验 →</button>
             </div>
 			
 			<div>
@@ -1056,7 +1056,7 @@ body {
                      class="w-full h-auto rounded-lg">
               </div>
               <p class="text-gray-600 text-sm mt-3">实时双向翻译，支持多语言聊天，自动检测并翻译消息内容，保留原始消息供参考。</p>
-              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('screenshot3-download')">立即体验 →</button>
+              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('screenshot3-download')">立即体验 →</button>
             </div>
 			
 			<div>
@@ -1067,7 +1067,7 @@ body {
                      class="w-full h-auto rounded-lg">
               </div>
               <p class="text-gray-600 text-sm mt-3">实时双向翻译，支持多语言聊天，自动检测并翻译消息内容，保留原始消息供参考。</p>
-              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('screenshot4-download')">立即体验 →</button>
+              <button class="mt-4 text-sm text-blue-600 font-semibold cta-button" onclick="trackConversion('screenshot4-download')">立即体验 →</button>
             </div>
           </div>
           
@@ -1078,30 +1078,30 @@ body {
                 <i class="fas fa-sync-alt text-blue-600 text-2xl mb-3"></i>
                 <div class="font-semibold text-gray-900">自动翻译</div>
                 <p class="text-gray-700 text-xs mt-1">实时双向翻译</p>
-                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('demo-translation')">查看演示 →</button>
+                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackConversion('demo-translation')">查看演示 →</button>
               </div>
               <div class="text-center p-4 bg-white rounded-lg shadow-sm">
                 <i class="fas fa-user-plus text-green-600 text-2xl mb-3"></i>
                 <div class="font-semibold text-gray-900">好友管理</div>
                 <p class="text-gray-700 text-xs mt-1">智能分组标签</p>
-                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('demo-friends')">查看演示 →</button>
+                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackConversion('demo-friends')">查看演示 →</button>
               </div>
               <div class="text-center p-4 bg-white rounded-lg shadow-sm">
                 <i class="fas fa-chart-bar text-purple-600 text-2xl mb-3"></i>
                 <div class="font-semibold text-gray-900">数据统计</div>
                 <p class="text-gray-700 text-xs mt-1">可视化报表</p>
-                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('demo-analytics')">查看演示 →</button>
+                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackConversion('demo-analytics')">查看演示 →</button>
               </div>
               <div class="text-center p-4 bg-white rounded-lg shadow-sm">
                 <i class="fas fa-cogs text-amber-600 text-2xl mb-3"></i>
                 <div class="font-semibold text-gray-900">设置中心</div>
                 <p class="text-gray-700 text-xs mt-1">个性化配置</p>
-                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackAndRedirect('demo-settings')">查看演示 →</button>
+                <button class="mt-2 text-xs text-blue-600 font-semibold cta-button" onclick="trackConversion('demo-settings')">查看演示 →</button>
               </div>
             </div>
             
             <div class="text-center mt-6">
-              <button class="primary-btn cta-button px-8" onclick="trackAndRedirect('screenshots-download')">
+              <button class="primary-btn cta-button px-8" onclick="trackConversion('screenshots-download')">
                 <i class="fas fa-download mr-2"></i>立即下载完整版体验所有功能
               </button>
             </div>
@@ -1134,7 +1134,7 @@ body {
                     <li>文件大小：58.7 MB</li>
                     <li>支持 Windows 10/11 系统</li>
                   </ul>
-                  <button class="mt-4 primary-btn cta-button w-full" onclick="trackAndRedirect('guide-windows')">
+                  <button class="mt-4 primary-btn cta-button w-full" onclick="trackConversion('guide-windows')">
                     下载Windows版
                   </button>
                 </div>
@@ -1148,7 +1148,7 @@ body {
                     <li>文件大小：89.3 MB</li>
                     <li>支持 macOS 11.0 以上系统</li>
                   </ul>
-                  <button class="mt-4 primary-btn cta-button w-full" onclick="trackAndRedirect('guide-macos')">
+                  <button class="mt-4 primary-btn cta-button w-full" onclick="trackConversion('guide-macos')">
                     下载macOS版
                   </button>
                 </div>
@@ -1247,7 +1247,7 @@ body {
                 
                 <div class="text-center mt-6">
                   <p class="text-gray-700 mb-4">现在就开始您的全球社交翻译之旅吧！</p>
-                  <button class="primary-btn cta-button px-8" onclick="trackAndRedirect('guide-start')">
+                  <button class="primary-btn cta-button px-8" onclick="trackConversion('guide-start')">
                     <i class="fas fa-rocket mr-2"></i>立即开始使用
                   </button>
                 </div>
@@ -1259,7 +1259,7 @@ body {
           <div class="bg-blue-50 p-5 rounded-xl border border-blue-200">
             <h5 class="text-lg font-bold text-gray-900 mb-3">007软件中心提示</h5>
             <p class="text-gray-700">如果您在下载或安装过程中遇到任何问题，可以访问官方网站的帮助中心或联系技术支持。我们建议定期检查软件更新，以获得最佳的使用体验和安全保障。</p>
-            <button class="mt-4 primary-btn cta-button" onclick="trackAndRedirect('help-center')">
+            <button class="mt-4 primary-btn cta-button" onclick="trackConversion('help-center')">
               <i class="fas fa-question-circle mr-2"></i>访问官方帮助中心
             </button>
           </div>
@@ -1281,7 +1281,7 @@ body {
                   <strong>是的，完全免费下载和使用基础功能！</strong> HelloWord提供免费版和高级版两种版本。免费版包含基础翻译功能和单个社交账号管理，适合个人用户基本需求。
                   高级版提供无限账号管理、高级翻译引擎、企业功能、客户关系管理等高级功能，适合商务用户和专业用户。
                 </p>
-                <button class="mt-4 primary-btn cta-button" onclick="trackAndRedirect('faq-free')">
+                <button class="mt-4 primary-btn cta-button" onclick="trackConversion('faq-free')">
                   <i class="fas fa-download mr-2"></i>立即下载免费版
                 </button>
               </div>
@@ -1297,7 +1297,7 @@ body {
                 <p class="text-gray-700 mb-3">
                   目前支持WhatsApp、Facebook、Instagram、Line、Tinder、Telegram等主流社交平台，并持续增加新的平台支持。
                 </p>
-                <button class="mt-4 primary-btn cta-button" onclick="trackAndRedirect('faq-platforms')">
+                <button class="mt-4 primary-btn cta-button" onclick="trackConversion('faq-platforms')">
                   <i class="fas fa-external-link-alt mr-2"></i>查看完整平台列表
                 </button>
               </div>
@@ -1314,7 +1314,7 @@ body {
                   HelloWord采用本地加密存储技术，您的账号信息和聊天记录都使用加密算法保存在本地设备上。
                   所有数据传输都经过SSL加密，确保您的账号安全。007软件中心已验证其软件来源的安全性。
                 </p>
-                <button class="mt-4 primary-btn cta-button" onclick="trackAndRedirect('faq-security')">
+                <button class="mt-4 primary-btn cta-button" onclick="trackConversion('faq-security')">
                   <i class="fas fa-shield-alt mr-2"></i>了解安全详情
                 </button>
               </div>
@@ -1330,7 +1330,7 @@ body {
                 <p class="text-gray-700">
                   基础社交功能可以在离线状态下使用，但翻译功能需要网络连接。我们建议保持网络连接以获得最佳的翻译体验和实时消息同步。
                 </p>
-                <button class="mt-4 primary-btn cta-button" onclick="trackAndRedirect('faq-network')">
+                <button class="mt-4 primary-btn cta-button" onclick="trackConversion('faq-network')">
                   <i class="fas fa-wifi mr-2"></i>立即下载体验
                 </button>
               </div>
@@ -1345,7 +1345,7 @@ body {
                 <p>访问官方网站查看完整文档或联系技术支持团队。</p>
               </div>
               <button class="mt-4 md:mt-0 px-6 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-colors cta-button" 
-                      onclick="trackAndRedirect('help-center-final')">
+                      onclick="trackConversion('help-center-final')">
                 访问官方帮助中心
               </button>
             </div>
@@ -1363,11 +1363,11 @@ body {
       
       <div class="flex flex-col sm:flex-row justify-center gap-6 mb-8">
         <button class="bg-white text-blue-600 font-bold py-4 px-8 rounded-xl text-lg hover:bg-gray-100 transition-colors shadow-lg cta-button"
-                onclick="trackAndRedirect('final-windows')">
+                onclick="trackConversion('final-windows')">
           <i class="fab fa-windows mr-3"></i>下载Windows版
         </button>
         <button class="bg-gray-900 text-white font-bold py-4 px-8 rounded-xl text-lg hover:bg-gray-800 transition-colors shadow-lg cta-button"
-                onclick="trackAndRedirect('final-macos')">
+                onclick="trackConversion('final-macos')">
           <i class="fab fa-apple mr-3"></i>下载macOS版
         </button>
       </div>
@@ -1458,71 +1458,41 @@ body {
 </footer>
 
 <script>
-// 谷歌事件上报和跳转函数
-function trackAndRedirect(action) {
-  const url = 'https://www.helloworld3.net';
+// 核心转化追踪函数 - 精简版
+function trackConversion(action) {
   const button = event.currentTarget;
+  const targetUrl = 'https://www.helloworld3.net';
   
   // 显示加载状态
   button.classList.add('loading');
   
   try {
-    // 上报谷歌事件
+    // 1. 上报Google Ads转化事件（您提供的核心代码）
     gtag('event', 'conversion', {
       'send_to': 'AW-17658750857/uXUSCMbLgs0bEInPrORB',
-      'event_label': action,
+      'event_label': action,  // 区分不同按钮
       'event_callback': function() {
         console.log('Google Ads conversion tracked: ' + action);
       }
-    });
-    
-    // 添加额外的GA4事件
-    gtag('event', 'click', {
-      'event_category': 'CTA',
-      'event_label': action,
-      'value': 1
     });
     
   } catch (error) {
     console.error('Google Ads tracking error:', error);
   }
   
-  // 延迟300ms后跳转（无论上报成功与否）
+  // 2. 延迟300ms后跳转（异步执行）
   setTimeout(function() {
     // 移除加载状态
     button.classList.remove('loading');
     
     // 在新标签页打开目标链接
-    window.open(url, '_blank');
-    
-    // 可选：如果需要在当前页也记录点击
-    try {
-      // 记录本地点击（用于分析）
-      const clickData = {
-        action: action,
-        timestamp: new Date().toISOString(),
-        url: url
-      };
-      localStorage.setItem('last_cta_click', JSON.stringify(clickData));
-    } catch (e) {
-      console.log('Local storage not available');
-    }
+    window.open(targetUrl, '_blank');
     
   }, 300);
 }
 
-// 页面加载时记录访问
+// 选项卡切换功能（保持原功能）
 document.addEventListener('DOMContentLoaded', function() {
-  try {
-    gtag('event', 'page_view', {
-      'page_title': document.title,
-      'page_location': window.location.href
-    });
-  } catch (error) {
-    console.error('Page view tracking error:', error);
-  }
-  
-  // 选项卡切换功能
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
   
@@ -1537,16 +1507,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // 添加active类到当前选项卡
       this.classList.add('active');
       document.getElementById(`${tabId}-tab`).classList.add('active');
-      
-      // 记录选项卡切换
-      try {
-        gtag('event', 'tab_switch', {
-          'event_category': 'Interaction',
-          'event_label': tabId
-        });
-      } catch (e) {
-        console.log('Tab switch tracking error');
-      }
     });
   });
   
@@ -1564,16 +1524,6 @@ document.addEventListener('DOMContentLoaded', function() {
             top: targetElement.offsetTop - 100,
             behavior: 'smooth'
           });
-          
-          // 记录滚动点击
-          try {
-            gtag('event', 'scroll_click', {
-              'event_category': 'Navigation',
-              'event_label': targetId
-            });
-          } catch (e) {
-            console.log('Scroll click tracking error');
-          }
         }
       }
     });
@@ -1584,24 +1534,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroLeft = document.querySelector('.hero-left');
     const heroRight = document.querySelector('.hero-right');
     
-    if (window.innerWidth >= 1024) { // 只在桌面端调整
+    if (window.innerWidth >= 1024) {
       if (heroLeft && heroRight) {
         const leftHeight = heroLeft.offsetHeight;
         const rightHeight = heroRight.offsetHeight;
-        
-        // 设置最小高度，确保两侧高度一致
         const maxHeight = Math.max(leftHeight, rightHeight);
         heroLeft.style.minHeight = maxHeight + 'px';
         heroRight.style.minHeight = maxHeight + 'px';
       }
     } else {
-      // 移动端移除最小高度
       if (heroLeft) heroLeft.style.minHeight = '';
       if (heroRight) heroRight.style.minHeight = '';
     }
   }
   
-  // 初始调整和窗口调整时重新计算
   adjustHeroHeight();
   window.addEventListener('resize', adjustHeroHeight);
   
@@ -1612,37 +1558,6 @@ document.addEventListener('DOMContentLoaded', function() {
       this.src = 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
       this.alt = '软件界面展示图';
     });
-  }
-  
-  // 记录页面停留时间
-  let pageEnterTime = new Date();
-  window.addEventListener('beforeunload', function() {
-    const pageExitTime = new Date();
-    const timeSpent = Math.round((pageExitTime - pageEnterTime) / 1000);
-    
-    try {
-      gtag('event', 'time_spent', {
-        'event_category': 'Engagement',
-        'event_label': 'page_engagement',
-        'value': timeSpent
-      });
-    } catch (e) {
-      console.log('Time spent tracking error');
-    }
-  });
-});
-
-// 页面可见性变化时记录
-document.addEventListener('visibilitychange', function() {
-  if (document.visibilityState === 'visible') {
-    try {
-      gtag('event', 'page_visible', {
-        'event_category': 'Engagement',
-        'event_label': 'page_return'
-      });
-    } catch (e) {
-      console.log('Visibility tracking error');
-    }
   }
 });
 </script>
